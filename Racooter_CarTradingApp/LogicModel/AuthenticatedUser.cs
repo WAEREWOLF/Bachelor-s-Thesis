@@ -9,8 +9,8 @@ namespace LogicModel
     {
         public Guid AuthenticatedUserId { get; set; }
         public PersonalData PersonalData { get; set; }
-        public History History { get; set; }
-        public Message Message { get; set; }
+        public History History { get; set; }        
+        public ICollection<Message> Message { get; set; }
         public IReadOnlyCollection<Announcement> Announcements { get; }
         public IReadOnlyCollection<Announcement> RecomAnouncements { get; }
         public IReadOnlyCollection<Announcement> FavouriteAnouncements { get; }
