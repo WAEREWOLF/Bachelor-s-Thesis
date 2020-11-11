@@ -1,0 +1,62 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29926.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Racooter.UI", "Racooter_CarTradingApp\Racooter.UI.csproj", "{A0237626-899B-47D4-9B73-E109E0CEFBF9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Racooter.Model", "LogicModel\Racooter.Model.csproj", "{DE5FF532-F654-4D2D-A8BD-C2BF2AD6D788}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Racooter.DataAccess", "Racooter.DataAccess\Racooter.DataAccess.csproj", "{B8B2ACBE-4528-4192-977A-0F8BBA7D050E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{6505CFA7-B431-4033-8878-86EE9DAE72C8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logic", "Logic", "{61A39711-4C0E-41B3-BC28-38BD8B38ED76}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccess", "DataAccess", "{8A9CA07D-7AA4-4891-914E-EB055C0A462B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Racooter.Abstractions", "Racooter.Abstractions\Racooter.Abstractions.csproj", "{D7FCECF7-B297-4D52-A718-D65B3916B647}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Racooter.Services", "Racooter.Services\Racooter.Services.csproj", "{5D512EDB-279F-497A-B5E6-C672CFA84FE9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A0237626-899B-47D4-9B73-E109E0CEFBF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0237626-899B-47D4-9B73-E109E0CEFBF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0237626-899B-47D4-9B73-E109E0CEFBF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0237626-899B-47D4-9B73-E109E0CEFBF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE5FF532-F654-4D2D-A8BD-C2BF2AD6D788}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE5FF532-F654-4D2D-A8BD-C2BF2AD6D788}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE5FF532-F654-4D2D-A8BD-C2BF2AD6D788}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE5FF532-F654-4D2D-A8BD-C2BF2AD6D788}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8B2ACBE-4528-4192-977A-0F8BBA7D050E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8B2ACBE-4528-4192-977A-0F8BBA7D050E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8B2ACBE-4528-4192-977A-0F8BBA7D050E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8B2ACBE-4528-4192-977A-0F8BBA7D050E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7FCECF7-B297-4D52-A718-D65B3916B647}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7FCECF7-B297-4D52-A718-D65B3916B647}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7FCECF7-B297-4D52-A718-D65B3916B647}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7FCECF7-B297-4D52-A718-D65B3916B647}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D512EDB-279F-497A-B5E6-C672CFA84FE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D512EDB-279F-497A-B5E6-C672CFA84FE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D512EDB-279F-497A-B5E6-C672CFA84FE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D512EDB-279F-497A-B5E6-C672CFA84FE9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A0237626-899B-47D4-9B73-E109E0CEFBF9} = {6505CFA7-B431-4033-8878-86EE9DAE72C8}
+		{DE5FF532-F654-4D2D-A8BD-C2BF2AD6D788} = {61A39711-4C0E-41B3-BC28-38BD8B38ED76}
+		{B8B2ACBE-4528-4192-977A-0F8BBA7D050E} = {8A9CA07D-7AA4-4891-914E-EB055C0A462B}
+		{D7FCECF7-B297-4D52-A718-D65B3916B647} = {61A39711-4C0E-41B3-BC28-38BD8B38ED76}
+		{5D512EDB-279F-497A-B5E6-C672CFA84FE9} = {61A39711-4C0E-41B3-BC28-38BD8B38ED76}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1EC1BC30-1F37-4759-9A08-2C123E5DFFDF}
+	EndGlobalSection
+EndGlobal
