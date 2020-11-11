@@ -2,6 +2,8 @@
 
 namespace LogicModel
 {
+    public enum UserType { normalUser, moderator}
+
     public class PersonalData
     {
         public string FirstName { get; set; }
@@ -10,7 +12,6 @@ namespace LogicModel
         public byte[] Image { get; set; }
         public string PhoneNumber { get; set; }
         public string Password { get; set; }
-        public enum UserType { normalUser, moderator}
         public UserType GetUserType { get; set; }
     }
 }

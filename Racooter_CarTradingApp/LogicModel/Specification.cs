@@ -1,6 +1,6 @@
 ﻿namespace LogicModel
 {
-    public enum FuelType { diesel, GPL, petrol, electric, hybrid}
+    public enum FuelType { diesel, GPL, petrol, electric, hybrid }
 
     public class Specification
     {
