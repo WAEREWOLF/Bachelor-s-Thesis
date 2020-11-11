@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace LogicModel
 {
@@ -6,12 +7,13 @@ namespace LogicModel
     
     public class AuthenticatedUser
     {
+        public Guid AuthenticatedUserId { get; set; }
         public PersonalData PersonalData { get; set; }
         public History History { get; set; }
         public Message Message { get; set; }
-        public IReadOnlyCollection<Announcements> Announcements { get; }
-        public IReadOnlyCollection<Announcements> RecomAnouncements { get; }
-        public IReadOnlyCollection<Announcements> FavouriteAnouncements { get; }
+        public IReadOnlyCollection<Announcement> Announcements { get; }
+        public IReadOnlyCollection<Announcement> RecomAnouncements { get; }
+        public IReadOnlyCollection<Announcement> FavouriteAnouncements { get; }
         public decimal Credits { get; set; }
         public int NrOfAnnouncements { get; set; }
         public Location Location { get; set; }

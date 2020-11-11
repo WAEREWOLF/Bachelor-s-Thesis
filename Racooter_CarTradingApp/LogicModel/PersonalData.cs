@@ -1,4 +1,5 @@
-﻿using static System.Net.Mime.MediaTypeNames;
+﻿using System;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace LogicModel
 {
@@ -6,6 +7,7 @@ namespace LogicModel
 
     public class PersonalData
     {
+        public Guid PersonalDataId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }

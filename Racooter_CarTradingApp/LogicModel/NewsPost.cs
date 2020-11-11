@@ -3,8 +3,9 @@ using System.Collections.Generic;
 
 namespace LogicModel
 {
-    public class NewsPosts
+    public class NewsPost
     {
+        public Guid NewsPostId { get; set; }
         public string Title { get; set; }
         public string Subtitle { get; set; }
         public string Content { get; set; }

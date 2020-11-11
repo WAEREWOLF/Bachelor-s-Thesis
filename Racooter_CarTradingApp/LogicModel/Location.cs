@@ -1,7 +1,10 @@
-﻿namespace LogicModel
+﻿using System;
+
+namespace LogicModel
 {
     public class Location
     {
+        public Guid LocationId { get; set; }
         public string Country { get; set; }
         public string State { get; set; }
         public string City { get; set; }
