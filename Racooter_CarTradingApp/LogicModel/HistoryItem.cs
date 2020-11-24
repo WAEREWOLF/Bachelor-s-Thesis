@@ -2,9 +2,8 @@
 
 namespace LogicModel
 {
-    public class HistoryItem
-    {
-        public Guid HistoryItemId { get; set; }
+    public class HistoryItem : BaseIdentifier
+    {        
         public string Title { get; set; }
         public string Category { get; set; }
         public DateTime Date { get; set; }

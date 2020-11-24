@@ -2,9 +2,8 @@
 
 namespace LogicModel
 {
-    public class Announcement
-    {
-        public Guid AnnouncementId { get; set; }
+    public class Announcement : BaseIdentifier
+    {        
         public string Title { get; set; }
         public decimal Price { get; set; }
         public byte[] Images { get; set; }

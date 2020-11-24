@@ -2,9 +2,8 @@
 
 namespace LogicModel
 {
-    public class Description
+    public class Description : BaseIdentifier
     {
-        public Guid DescriptionId { get; set; }
         public string Subtitle { get; set; }
         public string Content { get; set; }
     }

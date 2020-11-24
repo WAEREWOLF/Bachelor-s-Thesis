@@ -2,9 +2,8 @@
 
 namespace LogicModel
 {
-    public class Message
+    public class Message : BaseIdentifier
     {
-        public Guid MessageId { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
         public AuthenticatedUser Recipient { get; set; }

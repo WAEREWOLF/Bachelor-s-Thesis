@@ -4,9 +4,8 @@ namespace LogicModel
 {
     public enum FuelType { diesel, GPL, petrol, electric, hybrid }
 
-    public class Specification
+    public class Specification : BaseIdentifier
     {
-        public Guid SpecificationId { set; get; }
         public string Make { get; set; }
         public string Model { get; set; }
         public string Year { get; set; }

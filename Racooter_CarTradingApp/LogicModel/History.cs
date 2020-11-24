@@ -4,9 +4,8 @@ using System.Collections.Generic;
 
 namespace LogicModel
 {
-    public class History
+    public class History : BaseIdentifier
     {
-        public Guid HistoryId { get; set; }
         public ICollection<HistoryItem> HistoryItems { get; set; } 
     }
 }

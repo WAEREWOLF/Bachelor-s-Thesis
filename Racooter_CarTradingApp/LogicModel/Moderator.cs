@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 
 namespace LogicModel
 {
-    public class Moderator
+    public class Moderator : BaseIdentifier
     {
-        public Guid ModeratorId { get; set; }
         public AuthenticatedUser AuthenticatedUser { get; set; }
         public ICollection<NewsPost> NewsPosts { get; set; }
     }

@@ -5,9 +5,8 @@ namespace LogicModel
 {
     public enum UserState { Active, Inactive, Banned }
     
-    public class AuthenticatedUser
+    public class AuthenticatedUser : BaseIdentifier
     {
-        public Guid AuthenticatedUserId { get; set; }
         public PersonalData PersonalData { get; set; }
         public History History { get; set; }        
         public ICollection<Message> Message { get; set; }
