@@ -13,6 +13,11 @@ namespace Racooter.DataAccess
         {
         }
 
+        public Announcement GetAnnouncementById(Guid announcementId)
+        {
+            return dbContext.Announcements.Where(a => a.Id == announcementId).FirstOrDefault();
+        }
+
         public IEnumerable<Announcement> GetAnnouncementsAccordingToFilters(string title, string category, decimal lowPrice, decimal highPrice, DateTime lowDate, DateTime highDate)
         {
             var announcements = dbContext.Announcements.Where(a => a.Title == title || a.Category == category || 

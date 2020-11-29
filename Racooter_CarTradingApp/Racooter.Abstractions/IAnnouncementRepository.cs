@@ -9,5 +9,6 @@ namespace Racooter.Abstractions
     {
         IEnumerable<Announcement> GetAnnouncementsAccordingToFilters(string title, string category, decimal lowPrice, decimal highPrice, DateTime lowDate, DateTime highDate);
         IEnumerable<Announcement> GetAnnouncementsBySpecification(Specification specification);
+        Announcement GetAnnouncementById(Guid announcementId);
     }
 }
