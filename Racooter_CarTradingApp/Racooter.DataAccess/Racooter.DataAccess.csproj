@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LogicModel\Racooter.Model.csproj" />
+    <ProjectReference Include="..\Racooter.Abstractions\Racooter.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>
