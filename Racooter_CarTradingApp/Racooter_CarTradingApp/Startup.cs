@@ -7,6 +7,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Racooter.DataAccess;
 using Racooter_CarTradingApp.Data;
+using Racooter.Abstractions;
+using Racooter.Services;
 
 namespace Racooter_CarTradingApp
 {
@@ -33,6 +35,13 @@ namespace Racooter_CarTradingApp
                 );
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            // add all the repositories
+            services.AddScoped<IAnnouncementRepository, AnnouncementRepository>();
+
+            // add all the services
+            services.AddScoped<AnnouncementsService>();
+            
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
