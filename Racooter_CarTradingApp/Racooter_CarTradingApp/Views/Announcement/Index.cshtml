@@ -1,0 +1,70 @@
+﻿@model Racooter.UI.Models.AnnouncementViewModel.AnnouncementViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+<a href='@Url.Action("AddAnnouncement", "Announcement")'>Add Announcement</a>
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("Title")
+            </th>
+            <th>
+                @Html.DisplayName("Date")
+            </th>
+            <th>
+                @Html.DisplayName("Category")
+            </th>
+            <th>
+                @Html.DisplayName("Description")
+            </th>
+            <th>
+            </th>
+            <th>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Announcements.Count() == 0)
+        {
+            <tr>
+                <td colspan="4">
+                    No records match search criteria
+                </td>
+            </tr>
+        }
+        else
+        {
+            @foreach (var item in Model.Announcements)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.Date)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => item.Category)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.Description)
+                    </td>
+
+                    <td>
+                        <a asp-action="DeleteTrip" asp-route-id="@item.Id">Delete</a> |
+                        <a asp-action="UpdateTrip" asp-route-id="@item.Id">Update</a> |
+                        <a asp-action="Index" asp-route-id="@item.Id" asp-controller="Bus">Bus Info</a>
+                    </td>
+                    <td>
+                        <a asp-action="BookSeat" asp-route-id="@item.Id" asp-controller="SearchTrip">
+                            <input type="submit" class="btn btn-info" value="Book Seat" />
+                        </a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
