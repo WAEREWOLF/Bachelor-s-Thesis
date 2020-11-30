@@ -21,14 +21,14 @@ namespace Racooter.DataAccess.Migrations
 
             modelBuilder.Entity("LogicModel.Admin", b =>
                 {
-                    b.Property<Guid>("AdminId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("AuthenticatedUserId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("AdminId");
+                    b.HasKey("Id");
 
                     b.HasIndex("AuthenticatedUserId");
 
@@ -37,7 +37,7 @@ namespace Racooter.DataAccess.Migrations
 
             modelBuilder.Entity("LogicModel.Announcement", b =>
                 {
-                    b.Property<Guid>("AnnouncementId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -77,7 +77,7 @@ namespace Racooter.DataAccess.Migrations
                     b.Property<int>("Views")
                         .HasColumnType("int");
 
-                    b.HasKey("AnnouncementId");
+                    b.HasKey("Id");
 
                     b.HasIndex("AuthenticatedUserId");
 
@@ -94,7 +94,7 @@ namespace Racooter.DataAccess.Migrations
 
             modelBuilder.Entity("LogicModel.AuthenticatedUser", b =>
                 {
-                    b.Property<Guid>("AuthenticatedUserId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -119,7 +119,7 @@ namespace Racooter.DataAccess.Migrations
                     b.Property<string>("UserType")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("AuthenticatedUserId");
+                    b.HasKey("Id");
 
                     b.HasIndex("HistoryId");
 
@@ -132,7 +132,7 @@ namespace Racooter.DataAccess.Migrations
 
             modelBuilder.Entity("LogicModel.Comment", b =>
                 {
-                    b.Property<Guid>("CommentId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -151,7 +151,7 @@ namespace Racooter.DataAccess.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("CommentId");
+                    b.HasKey("Id");
 
                     b.HasIndex("AuthenticatedUserId");
 
@@ -162,7 +162,7 @@ namespace Racooter.DataAccess.Migrations
 
             modelBuilder.Entity("LogicModel.Description", b =>
                 {
-                    b.Property<Guid>("DescriptionId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -172,25 +172,25 @@ namespace Racooter.DataAccess.Migrations
                     b.Property<string>("Subtitle")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("DescriptionId");
+                    b.HasKey("Id");
 
                     b.ToTable("Descriptions");
                 });
 
             modelBuilder.Entity("LogicModel.History", b =>
                 {
-                    b.Property<Guid>("HistoryId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("HistoryId");
+                    b.HasKey("Id");
 
                     b.ToTable("Histories");
                 });
 
             modelBuilder.Entity("LogicModel.HistoryItem", b =>
                 {
-                    b.Property<Guid>("HistoryItemId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -218,7 +218,7 @@ namespace Racooter.DataAccess.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("HistoryItemId");
+                    b.HasKey("Id");
 
                     b.HasIndex("DescriptionId");
 
@@ -231,7 +231,7 @@ namespace Racooter.DataAccess.Migrations
 
             modelBuilder.Entity("LogicModel.Location", b =>
                 {
-                    b.Property<Guid>("LocationId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -256,14 +256,14 @@ namespace Racooter.DataAccess.Migrations
                     b.Property<string>("Street")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("LocationId");
+                    b.HasKey("Id");
 
                     b.ToTable("Locations");
                 });
 
             modelBuilder.Entity("LogicModel.Message", b =>
                 {
-                    b.Property<Guid>("MessageId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -279,29 +279,29 @@ namespace Racooter.DataAccess.Migrations
                     b.Property<bool>("IsRead")
                         .HasColumnType("bit");
 
-                    b.Property<Guid?>("RecipientAuthenticatedUserId")
+                    b.Property<Guid?>("RecipientId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("MessageId");
+                    b.HasKey("Id");
 
-                    b.HasIndex("RecipientAuthenticatedUserId");
+                    b.HasIndex("RecipientId");
 
                     b.ToTable("Messages");
                 });
 
             modelBuilder.Entity("LogicModel.Moderator", b =>
                 {
-                    b.Property<Guid>("ModeratorId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("AuthenticatedUserId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("ModeratorId");
+                    b.HasKey("Id");
 
                     b.HasIndex("AuthenticatedUserId");
 
@@ -310,7 +310,7 @@ namespace Racooter.DataAccess.Migrations
 
             modelBuilder.Entity("LogicModel.NewsPost", b =>
                 {
-                    b.Property<Guid>("NewsPostId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -341,7 +341,7 @@ namespace Racooter.DataAccess.Migrations
                     b.Property<int>("Views")
                         .HasColumnType("int");
 
-                    b.HasKey("NewsPostId");
+                    b.HasKey("Id");
 
                     b.HasIndex("AdminId");
 
@@ -352,7 +352,7 @@ namespace Racooter.DataAccess.Migrations
 
             modelBuilder.Entity("LogicModel.PersonalData", b =>
                 {
-                    b.Property<Guid>("PersonalDataId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -377,14 +377,14 @@ namespace Racooter.DataAccess.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("PersonalDataId");
+                    b.HasKey("Id");
 
                     b.ToTable("PersonalDatas");
                 });
 
             modelBuilder.Entity("LogicModel.Specification", b =>
                 {
-                    b.Property<Guid>("SpecificationId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -466,7 +466,7 @@ namespace Racooter.DataAccess.Migrations
                     b.Property<string>("Year")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("SpecificationId");
+                    b.HasKey("Id");
 
                     b.ToTable("Specifications");
                 });
@@ -546,7 +546,7 @@ namespace Racooter.DataAccess.Migrations
                 {
                     b.HasOne("LogicModel.AuthenticatedUser", "Recipient")
                         .WithMany("Message")
-                        .HasForeignKey("RecipientAuthenticatedUserId");
+                        .HasForeignKey("RecipientId");
                 });
 
             modelBuilder.Entity("LogicModel.Moderator", b =>

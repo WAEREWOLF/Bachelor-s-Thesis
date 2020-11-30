@@ -8,6 +8,7 @@ namespace Racooter.Services
     public class AnnouncementsService
     {
         private readonly IAnnouncementRepository announcementRepository;
+        private readonly IDescriptionRepository descriptionRepository;
 
         public AnnouncementsService(IAnnouncementRepository announcementRepository)
         {
@@ -21,7 +22,8 @@ namespace Racooter.Services
 
         public void AddAnnoouncement(Announcement announcement)
         {
-            announcementRepository.Add(new Announcement() { Id = Guid.NewGuid(), Title = announcement.Title, Category = announcement.Category, Description = announcement.Description,
+            var description = descriptionRepository.getDescriptionById(announcement.Description.Id);
+            announcementRepository.Add(new Announcement() { Id = Guid.NewGuid(), Title = announcement.Title, Category = announcement.Category, Description = description,
                                                             Date = announcement.Date, Images = announcement.Images, Price = announcement.Price,
                                                             Specification = announcement.Specification, Views = announcement.Views, IsAproved = announcement.IsAproved
             });

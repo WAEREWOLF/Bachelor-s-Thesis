@@ -8,6 +8,7 @@ namespace Racooter.UI.Models.AnnouncementViewModel
 {
     public class AnnouncementViewModel
     {
-        public IEnumerable<Announcement> Announcements { get; set; } 
+        public IEnumerable<Announcement> Announcements { get; set; }
+        public IEnumerable<Description> Descriptions { get;set; }
     }
 }

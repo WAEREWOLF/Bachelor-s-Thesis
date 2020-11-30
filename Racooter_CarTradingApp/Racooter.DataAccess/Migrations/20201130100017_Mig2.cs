@@ -11,31 +11,31 @@ namespace Racooter.DataAccess.Migrations
                 name: "Descriptions",
                 columns: table => new
                 {
-                    DescriptionId = table.Column<Guid>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false),
                     Subtitle = table.Column<string>(nullable: true),
                     Content = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Descriptions", x => x.DescriptionId);
+                    table.PrimaryKey("PK_Descriptions", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Histories",
                 columns: table => new
                 {
-                    HistoryId = table.Column<Guid>(nullable: false)
+                    Id = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Histories", x => x.HistoryId);
+                    table.PrimaryKey("PK_Histories", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Locations",
                 columns: table => new
                 {
-                    LocationId = table.Column<Guid>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false),
                     Country = table.Column<string>(nullable: true),
                     State = table.Column<string>(nullable: true),
                     City = table.Column<string>(nullable: true),
@@ -46,14 +46,14 @@ namespace Racooter.DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Locations", x => x.LocationId);
+                    table.PrimaryKey("PK_Locations", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "PersonalDatas",
                 columns: table => new
                 {
-                    PersonalDataId = table.Column<Guid>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false),
                     FirstName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
@@ -64,14 +64,14 @@ namespace Racooter.DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PersonalDatas", x => x.PersonalDataId);
+                    table.PrimaryKey("PK_PersonalDatas", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Specifications",
                 columns: table => new
                 {
-                    SpecificationId = table.Column<Guid>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false),
                     Make = table.Column<string>(nullable: true),
                     Model = table.Column<string>(nullable: true),
                     Year = table.Column<string>(nullable: true),
@@ -101,14 +101,14 @@ namespace Racooter.DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Specifications", x => x.SpecificationId);
+                    table.PrimaryKey("PK_Specifications", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "AuthenticatedUsers",
                 columns: table => new
                 {
-                    AuthenticatedUserId = table.Column<Guid>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false),
                     PersonalDataId = table.Column<Guid>(nullable: true),
                     HistoryId = table.Column<Guid>(nullable: true),
                     Credits = table.Column<decimal>(nullable: false),
@@ -119,24 +119,24 @@ namespace Racooter.DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AuthenticatedUsers", x => x.AuthenticatedUserId);
+                    table.PrimaryKey("PK_AuthenticatedUsers", x => x.Id);
                     table.ForeignKey(
                         name: "FK_AuthenticatedUsers_Histories_HistoryId",
                         column: x => x.HistoryId,
                         principalTable: "Histories",
-                        principalColumn: "HistoryId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_AuthenticatedUsers_Locations_LocationId",
                         column: x => x.LocationId,
                         principalTable: "Locations",
-                        principalColumn: "LocationId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_AuthenticatedUsers_PersonalDatas_PersonalDataId",
                         column: x => x.PersonalDataId,
                         principalTable: "PersonalDatas",
-                        principalColumn: "PersonalDataId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -144,7 +144,7 @@ namespace Racooter.DataAccess.Migrations
                 name: "HistoryItems",
                 columns: table => new
                 {
-                    HistoryItemId = table.Column<Guid>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false),
                     Title = table.Column<string>(nullable: true),
                     Category = table.Column<string>(nullable: true),
                     Date = table.Column<DateTime>(nullable: false),
@@ -156,24 +156,24 @@ namespace Racooter.DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_HistoryItems", x => x.HistoryItemId);
+                    table.PrimaryKey("PK_HistoryItems", x => x.Id);
                     table.ForeignKey(
                         name: "FK_HistoryItems_Descriptions_DescriptionId",
                         column: x => x.DescriptionId,
                         principalTable: "Descriptions",
-                        principalColumn: "DescriptionId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_HistoryItems_Histories_HistoryId",
                         column: x => x.HistoryId,
                         principalTable: "Histories",
-                        principalColumn: "HistoryId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_HistoryItems_Specifications_SpecificationId",
                         column: x => x.SpecificationId,
                         principalTable: "Specifications",
-                        principalColumn: "SpecificationId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -181,17 +181,17 @@ namespace Racooter.DataAccess.Migrations
                 name: "Admins",
                 columns: table => new
                 {
-                    AdminId = table.Column<Guid>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false),
                     AuthenticatedUserId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Admins", x => x.AdminId);
+                    table.PrimaryKey("PK_Admins", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Admins_AuthenticatedUsers_AuthenticatedUserId",
                         column: x => x.AuthenticatedUserId,
                         principalTable: "AuthenticatedUsers",
-                        principalColumn: "AuthenticatedUserId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -199,7 +199,7 @@ namespace Racooter.DataAccess.Migrations
                 name: "Announcements",
                 columns: table => new
                 {
-                    AnnouncementId = table.Column<Guid>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false),
                     Title = table.Column<string>(nullable: true),
                     Price = table.Column<decimal>(nullable: false),
                     Images = table.Column<byte[]>(nullable: true),
@@ -215,36 +215,36 @@ namespace Racooter.DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Announcements", x => x.AnnouncementId);
+                    table.PrimaryKey("PK_Announcements", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Announcements_AuthenticatedUsers_AuthenticatedUserId",
                         column: x => x.AuthenticatedUserId,
                         principalTable: "AuthenticatedUsers",
-                        principalColumn: "AuthenticatedUserId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Announcements_AuthenticatedUsers_AuthenticatedUserId1",
                         column: x => x.AuthenticatedUserId1,
                         principalTable: "AuthenticatedUsers",
-                        principalColumn: "AuthenticatedUserId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Announcements_AuthenticatedUsers_AuthenticatedUserId2",
                         column: x => x.AuthenticatedUserId2,
                         principalTable: "AuthenticatedUsers",
-                        principalColumn: "AuthenticatedUserId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Announcements_Descriptions_DescriptionId",
                         column: x => x.DescriptionId,
                         principalTable: "Descriptions",
-                        principalColumn: "DescriptionId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Announcements_Specifications_SpecificationId",
                         column: x => x.SpecificationId,
                         principalTable: "Specifications",
-                        principalColumn: "SpecificationId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -252,22 +252,22 @@ namespace Racooter.DataAccess.Migrations
                 name: "Messages",
                 columns: table => new
                 {
-                    MessageId = table.Column<Guid>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false),
                     Title = table.Column<string>(nullable: true),
                     Content = table.Column<string>(nullable: true),
-                    RecipientAuthenticatedUserId = table.Column<Guid>(nullable: true),
+                    RecipientId = table.Column<Guid>(nullable: true),
                     Date = table.Column<DateTime>(nullable: false),
                     IsRead = table.Column<bool>(nullable: false),
                     IsDraft = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Messages", x => x.MessageId);
+                    table.PrimaryKey("PK_Messages", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Messages_AuthenticatedUsers_RecipientAuthenticatedUserId",
-                        column: x => x.RecipientAuthenticatedUserId,
+                        name: "FK_Messages_AuthenticatedUsers_RecipientId",
+                        column: x => x.RecipientId,
                         principalTable: "AuthenticatedUsers",
-                        principalColumn: "AuthenticatedUserId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -275,17 +275,17 @@ namespace Racooter.DataAccess.Migrations
                 name: "Moderators",
                 columns: table => new
                 {
-                    ModeratorId = table.Column<Guid>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false),
                     AuthenticatedUserId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Moderators", x => x.ModeratorId);
+                    table.PrimaryKey("PK_Moderators", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Moderators_AuthenticatedUsers_AuthenticatedUserId",
                         column: x => x.AuthenticatedUserId,
                         principalTable: "AuthenticatedUsers",
-                        principalColumn: "AuthenticatedUserId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -293,7 +293,7 @@ namespace Racooter.DataAccess.Migrations
                 name: "NewsPosts",
                 columns: table => new
                 {
-                    NewsPostId = table.Column<Guid>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false),
                     Title = table.Column<string>(nullable: true),
                     Subtitle = table.Column<string>(nullable: true),
                     Content = table.Column<string>(nullable: true),
@@ -306,18 +306,18 @@ namespace Racooter.DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_NewsPosts", x => x.NewsPostId);
+                    table.PrimaryKey("PK_NewsPosts", x => x.Id);
                     table.ForeignKey(
                         name: "FK_NewsPosts_Admins_AdminId",
                         column: x => x.AdminId,
                         principalTable: "Admins",
-                        principalColumn: "AdminId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_NewsPosts_Moderators_ModeratorId",
                         column: x => x.ModeratorId,
                         principalTable: "Moderators",
-                        principalColumn: "ModeratorId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -325,7 +325,7 @@ namespace Racooter.DataAccess.Migrations
                 name: "Comments",
                 columns: table => new
                 {
-                    CommentId = table.Column<Guid>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false),
                     Title = table.Column<string>(nullable: true),
                     Content = table.Column<string>(nullable: true),
                     AuthenticatedUserId = table.Column<Guid>(nullable: true),
@@ -334,18 +334,18 @@ namespace Racooter.DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Comments", x => x.CommentId);
+                    table.PrimaryKey("PK_Comments", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Comments_AuthenticatedUsers_AuthenticatedUserId",
                         column: x => x.AuthenticatedUserId,
                         principalTable: "AuthenticatedUsers",
-                        principalColumn: "AuthenticatedUserId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Comments_NewsPosts_NewsPostId",
                         column: x => x.NewsPostId,
                         principalTable: "NewsPosts",
-                        principalColumn: "NewsPostId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -420,9 +420,9 @@ namespace Racooter.DataAccess.Migrations
                 column: "SpecificationId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Messages_RecipientAuthenticatedUserId",
+                name: "IX_Messages_RecipientId",
                 table: "Messages",
-                column: "RecipientAuthenticatedUserId");
+                column: "RecipientId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Moderators_AuthenticatedUserId",

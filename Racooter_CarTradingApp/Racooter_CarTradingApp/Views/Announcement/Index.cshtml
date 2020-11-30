@@ -49,9 +49,17 @@
                     <td>
                         @Html.DisplayFor(model => item.Category)
                     </td>
-                    <td>
-                        @Html.DisplayFor(model => item.Description)
-                    </td>
+                    @foreach(var n in Model.Descriptions)
+                    {
+                        if(item.Description.Id == n.Id)
+                        {
+                            <td>
+                                @Html.DisplayFor(model => n.Content)
+                            </td>
+
+                        }
+
+                    }
 
                     <td>
                         <a asp-action="DeleteTrip" asp-route-id="@item.Id">Delete</a> |
