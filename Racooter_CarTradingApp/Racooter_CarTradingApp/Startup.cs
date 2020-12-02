@@ -9,6 +9,7 @@ using Racooter.DataAccess;
 using Racooter_CarTradingApp.Data;
 using Racooter.Abstractions;
 using Racooter.Services;
+using Microsoft.CodeAnalysis.Options;
 
 namespace Racooter_CarTradingApp
 {
@@ -30,9 +31,11 @@ namespace Racooter_CarTradingApp
 
             services.AddDbContext<RacooterCarTradingDbContext>(
                options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection"))
-                );
+               {               
+                    options.UseSqlServer(
+                        Configuration.GetConnectionString("DefaultConnection"));
+                   options.UseLazyLoadingProxies(true);
+               });
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 

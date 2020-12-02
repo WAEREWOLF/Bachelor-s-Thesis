@@ -7,7 +7,7 @@ namespace LogicModel
 {
     public class Moderator : BaseIdentifier
     {
-        public AuthenticatedUser AuthenticatedUser { get; set; }
-        public ICollection<NewsPost> NewsPosts { get; set; }
+        public virtual AuthenticatedUser AuthenticatedUser { get; set; }
+        public virtual ICollection<NewsPost> NewsPosts { get; set; }
     }
 }

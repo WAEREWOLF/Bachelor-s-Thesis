@@ -1,5 +1,5 @@
 ﻿using LogicModel;
-using Racooter.Abstractions; // add global reference to abstraction?
+using Racooter.Abstractions;
 using System;
 using System.Collections.Generic;
 
@@ -7,8 +7,7 @@ namespace Racooter.Services
 {
     public class AnnouncementsService
     {
-        private readonly IAnnouncementRepository announcementRepository;
-        private readonly IDescriptionRepository descriptionRepository;
+        private readonly IAnnouncementRepository announcementRepository;        
 
         public AnnouncementsService(IAnnouncementRepository announcementRepository)
         {
@@ -22,7 +21,6 @@ namespace Racooter.Services
 
         public void AddAnnoouncement(Announcement announcement)
         {
-            //var description = descriptionRepository.GetDescriptionById(announcement.Description.Id);
             announcementRepository.Add(new Announcement() { Id = Guid.NewGuid(), Title = announcement.Title, Category = announcement.Category, Description = announcement.Description,
                                                             Date = announcement.Date, Images = announcement.Images, Price = announcement.Price,
                                                             Specification = announcement.Specification, Views = announcement.Views, IsAproved = announcement.IsAproved

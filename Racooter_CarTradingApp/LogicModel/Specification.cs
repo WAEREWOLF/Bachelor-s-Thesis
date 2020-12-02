@@ -33,5 +33,45 @@ namespace LogicModel
         public bool HasHeatedStWheel { get; set; }
         public bool HadAccident { get; set; }
 
+        public override bool Equals(Object obj)
+        {
+            if (!obj.GetType().Equals(typeof(Specification)))
+            {
+                return false;
+            }
+            Specification currentObj = obj as Specification;
+
+            bool retValue = false;
+            if (currentObj != null)
+            {
+                retValue = Make == currentObj.Make &&
+                           Model == currentObj.Model &&
+                           Year == currentObj.Year &&
+                           Mileage == currentObj.Mileage &&
+                           GetFuelType == currentObj.GetFuelType &&
+                           Power == currentObj.Power &&
+                           BodyType == currentObj.BodyType &&
+                           NrOfDoors == currentObj.NrOfDoors &&
+                           GearBox == currentObj.GearBox &&
+                           EngineSize == currentObj.EngineSize &&
+                           Color == currentObj.Color &&
+                           IsNegotiable == currentObj.IsNegotiable &&
+                           IsFullOptions == currentObj.IsFullOptions &&
+                           HasABS == currentObj.HasABS &&
+                           HasESP == currentObj.HasESP &&
+                           HasWarranty == currentObj.HasWarranty &&
+                           HasLogHistory == currentObj.HasLogHistory &&
+                           HasCruiseControl == currentObj.HasCruiseControl &&
+                           HasDualZoneClimate == currentObj.HasDualZoneClimate &&
+                           HasFullElectricWin == currentObj.HasFullElectricWin &&
+                           HasHeatedSeats == currentObj.HasHeatedSeats &&
+                           HasVentedSeats == currentObj.HasVentedSeats &&
+                           HasElectricMirrors == currentObj.HasElectricMirrors &&
+                           HasHeatedStWheel == currentObj.HasHeatedStWheel &&
+                           HadAccident == currentObj.HadAccident;
+            }
+
+            return retValue;
+        }
     }
 }

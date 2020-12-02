@@ -9,7 +9,7 @@ namespace LogicModel
         public DateTime Date { get; set; }
         public bool IsBuy { get; set; }
         public byte[] Image { get; set; }
-        public Description Description { get; set; }
-        public Specification Specification { get; set; }
+        public string Description { get; set; }
+        public virtual Specification Specification { get; set; }
     }
 }

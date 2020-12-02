@@ -10,8 +10,8 @@ using Racooter.DataAccess;
 namespace Racooter.DataAccess.Migrations
 {
     [DbContext(typeof(RacooterCarTradingDbContext))]
-    [Migration("20201130100017_Mig2")]
-    partial class Mig2
+    [Migration("20201202181447_Mig1")]
+    partial class Mig1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -58,11 +58,8 @@ namespace Racooter.DataAccess.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("DescriptionId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<byte[]>("Images")
-                        .HasColumnType("varbinary(max)");
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsAproved")
                         .HasColumnType("bit");
@@ -86,8 +83,6 @@ namespace Racooter.DataAccess.Migrations
                     b.HasIndex("AuthenticatedUserId1");
 
                     b.HasIndex("AuthenticatedUserId2");
-
-                    b.HasIndex("DescriptionId");
 
                     b.HasIndex("SpecificationId");
 
@@ -162,23 +157,6 @@ namespace Racooter.DataAccess.Migrations
                     b.ToTable("Comments");
                 });
 
-            modelBuilder.Entity("LogicModel.Description", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Content")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Subtitle")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Descriptions");
-                });
-
             modelBuilder.Entity("LogicModel.History", b =>
                 {
                     b.Property<Guid>("Id")
@@ -202,8 +180,8 @@ namespace Racooter.DataAccess.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("DescriptionId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid?>("HistoryId")
                         .HasColumnType("uniqueidentifier");
@@ -221,8 +199,6 @@ namespace Racooter.DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("DescriptionId");
 
                     b.HasIndex("HistoryId");
 
@@ -473,6 +449,28 @@ namespace Racooter.DataAccess.Migrations
                     b.ToTable("Specifications");
                 });
 
+            modelBuilder.Entity("Racooter.Model.AnnouncementImage", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("AnnouncementId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<byte[]>("ImageData")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AnnouncementId");
+
+                    b.ToTable("AnnouncementImage");
+                });
+
             modelBuilder.Entity("LogicModel.Admin", b =>
                 {
                     b.HasOne("LogicModel.AuthenticatedUser", "AuthenticatedUser")
@@ -493,10 +491,6 @@ namespace Racooter.DataAccess.Migrations
                     b.HasOne("LogicModel.AuthenticatedUser", null)
                         .WithMany("RecomAnouncements")
                         .HasForeignKey("AuthenticatedUserId2");
-
-                    b.HasOne("LogicModel.Description", "Description")
-                        .WithMany()
-                        .HasForeignKey("DescriptionId");
 
                     b.HasOne("LogicModel.Specification", "Specification")
                         .WithMany()
@@ -531,10 +525,6 @@ namespace Racooter.DataAccess.Migrations
 
             modelBuilder.Entity("LogicModel.HistoryItem", b =>
                 {
-                    b.HasOne("LogicModel.Description", "Description")
-                        .WithMany()
-                        .HasForeignKey("DescriptionId");
-
                     b.HasOne("LogicModel.History", null)
                         .WithMany("HistoryItems")
                         .HasForeignKey("HistoryId");
@@ -567,6 +557,13 @@ namespace Racooter.DataAccess.Migrations
                     b.HasOne("LogicModel.Moderator", null)
                         .WithMany("NewsPosts")
                         .HasForeignKey("ModeratorId");
+                });
+
+            modelBuilder.Entity("Racooter.Model.AnnouncementImage", b =>
+                {
+                    b.HasOne("LogicModel.Announcement", null)
+                        .WithMany("Images")
+                        .HasForeignKey("AnnouncementId");
                 });
 #pragma warning restore 612, 618
         }

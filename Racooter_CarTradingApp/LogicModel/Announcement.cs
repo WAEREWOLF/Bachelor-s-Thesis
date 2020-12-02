@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Racooter.Model;
+using System;
+using System.Collections.Generic;
 
 namespace LogicModel
 {
@@ -6,12 +8,12 @@ namespace LogicModel
     {        
         public string Title { get; set; }
         public decimal Price { get; set; }
-        public byte[] Images { get; set; }
-        public Description Description { get; set; }
-        public Specification Specification { get; set; }
+        public virtual ICollection<AnnouncementImage> Images { get; set; }
+        public virtual Specification Specification { get; set; }
+        public string Description { get; set; }
+        public string Category { get; set; }
         public int Views { get; set; }
         public DateTime Date { get; set; }
-        public string Category { get; set; }
         public bool IsAproved { get; set; }
     }
 }

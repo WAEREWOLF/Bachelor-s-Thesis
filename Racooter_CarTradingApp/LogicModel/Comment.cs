@@ -6,7 +6,7 @@ namespace LogicModel
     {
         public string Title { get; set; }
         public string Content { get; set; }
-        public AuthenticatedUser AuthenticatedUser { get; set; }
+        public virtual AuthenticatedUser AuthenticatedUser { get; set; }
         public DateTime Date { get; set; }
     }
 }

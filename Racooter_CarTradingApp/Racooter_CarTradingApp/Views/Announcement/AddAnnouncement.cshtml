@@ -1,25 +1,25 @@
-﻿@model Racooter.UI.Models.AnnouncementViewModel.AddAnnouncementViewModel
+﻿@model Racooter.UI.Models.AnnouncementViewModel.AddOrUpdateAnnouncementViewModel
 @{
     ViewData["Title"] = "AddTrip";
 }
 
-    <form asp-action="AddAnnouncement" method="post">
+    <form asp-action="AddOrUpdateAnnouncement" method="post">
 
         <div class="row">
             <div class="col-2">
                 Title
             </div>
             <div class="col-10">
-                <input class="form-control" type="text" asp-for="Announcement.Title" />
+                <input class="form-control" type="text" asp-for="Title" />
             </div>
         </div>
         <br />
         <div class="row">
             <div class="col-2">
-                Date
+                Price
             </div>
             <div class="col-10">
-                <input class="form-control" type="date" asp-for="Announcement.Date">
+                <input class="form-control" type="number" asp-for="Price">
             </div>
         </div>
         <br />
@@ -28,7 +28,7 @@
                 Category
             </div>
             <div class="col-10">
-                <input class="form-control" type="text" asp-for="Announcement.Category">
+                <input class="form-control" type="text" asp-for="Category">
             </div>
         </div><br />
         <div class="row">
@@ -36,7 +36,7 @@
                 Description
             </div>
             <div class="col-10">
-                <input class="form-control" type="text" asp-for="Announcement.Description.Content">
+                <input class="form-control" type="text" asp-for="Description">
             </div>
         </div><br />
         <br />

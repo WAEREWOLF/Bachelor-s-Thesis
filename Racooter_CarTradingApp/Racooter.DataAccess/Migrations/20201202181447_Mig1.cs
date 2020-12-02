@@ -3,23 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Racooter.DataAccess.Migrations
 {
-    public partial class Mig2 : Migration
+    public partial class Mig1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Descriptions",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(nullable: false),
-                    Subtitle = table.Column<string>(nullable: true),
-                    Content = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Descriptions", x => x.Id);
-                });
-
             migrationBuilder.CreateTable(
                 name: "Histories",
                 columns: table => new
@@ -111,9 +98,9 @@ namespace Racooter.DataAccess.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     PersonalDataId = table.Column<Guid>(nullable: true),
                     HistoryId = table.Column<Guid>(nullable: true),
+                    LocationId = table.Column<Guid>(nullable: true),
                     Credits = table.Column<decimal>(nullable: false),
                     NrOfAnnouncements = table.Column<int>(nullable: false),
-                    LocationId = table.Column<Guid>(nullable: true),
                     UserType = table.Column<string>(nullable: true),
                     GetState = table.Column<int>(nullable: false)
                 },
@@ -150,19 +137,13 @@ namespace Racooter.DataAccess.Migrations
                     Date = table.Column<DateTime>(nullable: false),
                     IsBuy = table.Column<bool>(nullable: false),
                     Image = table.Column<byte[]>(nullable: true),
-                    DescriptionId = table.Column<Guid>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
                     SpecificationId = table.Column<Guid>(nullable: true),
                     HistoryId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_HistoryItems", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_HistoryItems_Descriptions_DescriptionId",
-                        column: x => x.DescriptionId,
-                        principalTable: "Descriptions",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_HistoryItems_Histories_HistoryId",
                         column: x => x.HistoryId,
@@ -202,12 +183,11 @@ namespace Racooter.DataAccess.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     Title = table.Column<string>(nullable: true),
                     Price = table.Column<decimal>(nullable: false),
-                    Images = table.Column<byte[]>(nullable: true),
-                    DescriptionId = table.Column<Guid>(nullable: true),
                     SpecificationId = table.Column<Guid>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    Category = table.Column<string>(nullable: true),
                     Views = table.Column<int>(nullable: false),
                     Date = table.Column<DateTime>(nullable: false),
-                    Category = table.Column<string>(nullable: true),
                     IsAproved = table.Column<bool>(nullable: false),
                     AuthenticatedUserId = table.Column<Guid>(nullable: true),
                     AuthenticatedUserId1 = table.Column<Guid>(nullable: true),
@@ -232,12 +212,6 @@ namespace Racooter.DataAccess.Migrations
                         name: "FK_Announcements_AuthenticatedUsers_AuthenticatedUserId2",
                         column: x => x.AuthenticatedUserId2,
                         principalTable: "AuthenticatedUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Announcements_Descriptions_DescriptionId",
-                        column: x => x.DescriptionId,
-                        principalTable: "Descriptions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
@@ -285,6 +259,26 @@ namespace Racooter.DataAccess.Migrations
                         name: "FK_Moderators_AuthenticatedUsers_AuthenticatedUserId",
                         column: x => x.AuthenticatedUserId,
                         principalTable: "AuthenticatedUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AnnouncementImage",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
+                    ImageData = table.Column<byte[]>(nullable: true),
+                    AnnouncementId = table.Column<Guid>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AnnouncementImage", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AnnouncementImage_Announcements_AnnouncementId",
+                        column: x => x.AnnouncementId,
+                        principalTable: "Announcements",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -355,6 +349,11 @@ namespace Racooter.DataAccess.Migrations
                 column: "AuthenticatedUserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_AnnouncementImage_AnnouncementId",
+                table: "AnnouncementImage",
+                column: "AnnouncementId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Announcements_AuthenticatedUserId",
                 table: "Announcements",
                 column: "AuthenticatedUserId");
@@ -368,11 +367,6 @@ namespace Racooter.DataAccess.Migrations
                 name: "IX_Announcements_AuthenticatedUserId2",
                 table: "Announcements",
                 column: "AuthenticatedUserId2");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Announcements_DescriptionId",
-                table: "Announcements",
-                column: "DescriptionId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Announcements_SpecificationId",
@@ -403,11 +397,6 @@ namespace Racooter.DataAccess.Migrations
                 name: "IX_Comments_NewsPostId",
                 table: "Comments",
                 column: "NewsPostId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_HistoryItems_DescriptionId",
-                table: "HistoryItems",
-                column: "DescriptionId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_HistoryItems_HistoryId",
@@ -443,7 +432,7 @@ namespace Racooter.DataAccess.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Announcements");
+                name: "AnnouncementImage");
 
             migrationBuilder.DropTable(
                 name: "Comments");
@@ -455,10 +444,10 @@ namespace Racooter.DataAccess.Migrations
                 name: "Messages");
 
             migrationBuilder.DropTable(
-                name: "NewsPosts");
+                name: "Announcements");
 
             migrationBuilder.DropTable(
-                name: "Descriptions");
+                name: "NewsPosts");
 
             migrationBuilder.DropTable(
                 name: "Specifications");

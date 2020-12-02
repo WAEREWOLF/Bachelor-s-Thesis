@@ -6,6 +6,6 @@ namespace LogicModel
 {
     public class History : BaseIdentifier
     {
-        public ICollection<HistoryItem> HistoryItems { get; set; } 
+        public virtual ICollection<HistoryItem> HistoryItems { get; set; } 
     }
 }

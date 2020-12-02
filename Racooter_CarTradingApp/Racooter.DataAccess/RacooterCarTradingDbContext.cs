@@ -16,8 +16,7 @@ namespace Racooter.DataAccess
         public DbSet<Admin> Admins { get; set; }
         public DbSet<Announcement> Announcements { get; set; }
         public DbSet<AuthenticatedUser> AuthenticatedUsers { get; set; }
-        public DbSet<Comment> Comments { get; set; }
-        public DbSet<Description> Descriptions { get; set; }
+        public DbSet<Comment> Comments { get; set; }        
         public DbSet<History> Histories { get; set; }
         public DbSet<HistoryItem> HistoryItems { get; set; }
         public DbSet<Location> Locations { get; set; }

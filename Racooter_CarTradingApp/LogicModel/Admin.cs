@@ -5,7 +5,7 @@ namespace LogicModel
 {
     public class Admin : BaseIdentifier
     {        
-        public ICollection<NewsPost> NewsPosts { get; set; }
-        public AuthenticatedUser AuthenticatedUser { get; set; }
+        public virtual ICollection<NewsPost> NewsPosts { get; set; }
+        public virtual AuthenticatedUser AuthenticatedUser { get; set; }
     }
 }
