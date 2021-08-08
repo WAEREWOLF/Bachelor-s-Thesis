@@ -1,0 +1,600 @@
+﻿@model Racooter.DataTransferObjects.Announcement.AnnouncementDto
+
+<div class="col-md-12">
+
+    @if (ViewBag.IsAllowed == true)
+    {
+        <form action="/Announcements/AddUpdate" method="post">
+
+            <div class="row">
+                <h3>
+                    <strong>Announcement</strong>
+                </h3>
+            </div>
+
+            <input type="hidden" id="HiddenAnnouncementId" value="@Model.AnnouncementId" />
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <label class="col-md-12">Title</label>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" value="@Model.Title" id="Title" name="Title" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <label class="col-md-12">Category</label>
+                        <div class="col-md-12">
+                            <select class="form-control" id="Category" name="Category">
+                                @foreach (var item in Model.Categories)
+                                {
+                                    @if (item.Id == Model.Category)
+                                    {
+                                        <option selected value="@item.Id">@item.Name</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.Id">@item.Name</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <label class="col-md-12">Price</label>
+                        <div class="col-md-12">
+                            <input type="number" class="form-control" value="@Model.Price" id="Price" name="Price" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <label class="col-md-12">Date</label>
+                        <div class="col-md-12">
+                            <input type="date" class="form-control" value="@Model.Date" id="Date" name="Date" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group row">
+                        <label class="col-md-12">Description</label>
+                        <div class="col-md-12">
+                            <input type="text" id="Description" name="Description" value="@Model.Description" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <h3>Specification</h3>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <label class="col-md-12">Make</label>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" value="@Model.Specification.Make" id="Make" name="Specification.Make" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <label class="col-md-12">Model</label>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" value="@Model.Specification.Model" id="Model" name="Specification.Model" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <label class="col-md-12">Year</label>
+                        <div class="col-md-12">
+                            <input type="number" class="form-control" value="@Model.Specification.Year" id="Year" name="Specification.Year" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <label class="col-md-12">Mileage</label>
+                        <div class="col-md-12">
+                            <input type="number" class="form-control" value="@Model.Specification.Mileage" id="Mileage" name="Specification.Mileage" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <label class="col-md-12">Power</label>
+                        <div class="col-md-12">
+                            <input type="number" class="form-control" value="@Model.Specification.Power" id="Power" name="Specification.Power" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <label class="col-md-12">Body Type</label>
+                        <div class="col-md-12">
+                            @*<input type="text" class="form-control" value="@Model.Specification.BodyType" id="BodyType" name="Specification.BodyType" />*@
+                            <select class="form-control" id="BodyType" name="Specification.BodyType">
+                                @if (Model.Specification.BodyType == 1)
+                                {
+                                    <option value="1" selected>Cabrio</option>
+                                }
+                                else
+                                {
+                                    <option value="1">Cabrio</option>
+                                }
+                                @if (Model.Specification.BodyType == 2)
+                                {
+                                    <option value="2" selected>Sedan</option>
+                                }
+                                else
+                                {
+                                    <option value="2">Sedan</option>
+                                }
+                                @if (Model.Specification.BodyType == 3)
+                                {
+                                    <option value="3" selected>Coupe</option>
+                                }
+                                else
+                                {
+                                    <option value="3">Coupe</option>
+                                }
+                                @if (Model.Specification.BodyType == 4)
+                                {
+                                    <option value="4" selected>HatchBack</option>
+                                }
+                                else
+                                {
+                                    <option value="4">HatchBack</option>
+                                }
+                                @if (Model.Specification.BodyType == 5)
+                                {
+                                    <option value="5" selected>SUV</option>
+                                }
+                                else
+                                {
+                                    <option value="5">SUV</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <label class="col-md-12">Number Of Doors</label>
+                        <div class="col-md-12">
+                            <input type="number" class="form-control" value="@Model.Specification.NrOfDoors" id="NrOfDoors" name="Specification.NrOfDoors" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <label class="col-md-12">EngineSize</label>
+                        <div class="col-md-12">
+                            <input type="number" class="form-control" value="@Model.Specification.EngineSize" id="EngineSize" name="Specification.EngineSize" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <label class="col-md-12">Emissions</label>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" value="@Model.Specification.Emissions" id="Emissions" name="Specification.Emissions" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <label class="col-md-12">Color</label>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" value="@Model.Specification.Color" id="Color" name="Specification.Color" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <label class="col-md-12">Is Full Options</label>
+                        <div class="col-md-12">
+                            <select class="form-control" id="IsFullOptions" name="Specification.IsFullOptions">
+                                @if (Model.Specification.IsFullOptions == true)
+                                {
+                                    <option value="1" selected>Yes</option>
+                                    <option value="0">No</option>
+                                }
+                                else
+                                {
+                                    <option value="1">Yes</option>
+                                    <option value="0" selected>No</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <label class="col-md-12">Is Negotiable</label>
+                        <div class="col-md-12">
+                            <select class="form-control" id="IsNegotiable" name="Specification.IsNegotiable">
+                                @if (Model.Specification.IsNegotiable == true)
+                                {
+                                    <option value="1" selected>Yes</option>
+                                    <option value="0">No</option>
+                                }
+                                else
+                                {
+                                    <option value="1">Yes</option>
+                                    <option value="0" selected>No</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <label class="col-md-12">Fuel Type</label>
+                        <div class="col-md-12">
+                            <select class="form-control" id="GetFuelType">
+                                @if (Model.Specification.GetFuelType == 1)
+                                {
+                                    <option value="1" selected>Diesel</option>
+                                }
+                                else
+                                {
+                                    <option value="1">Diesel</option>
+                                }
+                                @if (Model.Specification.GetFuelType == 2)
+                                {
+                                    <option value="2" selected>GPL</option>
+                                }
+                                else
+                                {
+                                    <option value="2">GPL</option>
+                                }
+                                @if (Model.Specification.GetFuelType == 3)
+                                {
+                                    <option value="3" selected>Petrol</option>
+                                }
+                                else
+                                {
+                                    <option value="3">Petrol</option>
+                                }
+                                @if (Model.Specification.GetFuelType == 4)
+                                {
+                                    <option value="4" selected>Electric</option>
+                                }
+                                else
+                                {
+                                    <option value="4">Electric</option>
+                                }
+                                @if (Model.Specification.GetFuelType == 5)
+                                {
+                                    <option value="5" selected>Hybrid</option>
+                                }
+                                else
+                                {
+                                    <option value="5">Hybrid</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <label class="col-md-6">Has ABS</label>
+                        <div class="col-md-6">
+
+                            <input type="checkbox" value="" asp-for="@Model.Specification.HasABS" id="HasABS" name="Specification.HasABS" />
+
+                            @*@if (Model.Specification.HasABS)
+                                {
+
+                                }
+                                else
+                                {
+                                    <input type="checkbox" value="" id="Specification.HasABS" name="Specification.HasABS" />
+                                }*@
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <label class="col-md-6">Has ESP</label>
+                        <div class="col-md-6">
+                            @if (Model.Specification.HasESP)
+                            {
+                                <input type="checkbox" value="" id="HasESP" name="Specification.HasESP" checked />
+                            }
+                            else
+                            {
+                                <input type="checkbox" value="" id="HasESP" name="Specification.HasESP" />
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <label class="col-md-6">Has Warranty</label>
+                        <div class="col-md-6">
+                            @if (Model.Specification.HasWarranty)
+                            {
+                                <input type="checkbox" value="" id="HasWarranty" name="Specification.HasWarranty" checked />
+                            }
+                            else
+                            {
+                                <input type="checkbox" value="" id="HasWarranty" name="Specification.HasWarranty" />
+                            }
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <label class="col-md-6">Has LogHistory</label>
+                        <div class="col-md-6">
+                            @if (Model.Specification.HasLogHistory)
+                            {
+                                <input type="checkbox" value="" id="HasLogHistory" name="Specification.HasLogHistory" checked />
+                            }
+                            else
+                            {
+                                <input type="checkbox" value="" id="HasLogHistory" name="Specification.HasLogHistory" />
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <label class="col-md-6">Has Cruise Control</label>
+                        <div class="col-md-6">
+                            @if (Model.Specification.HasCruiseControl)
+                            {
+                                <input type="checkbox" value="" id="HasCruiseControl" name="Specification.HasCruiseControl" checked />
+                            }
+                            else
+                            {
+                                <input type="checkbox" value="" id="HasCruiseControl" name="Specification.HasCruiseControl" />
+                            }
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <label class="col-md-6">Has Dual Zone Climate</label>
+                        <div class="col-md-6">
+                            @if (Model.Specification.HasDualZoneClimate)
+                            {
+                                <input type="checkbox" value="" id="HasDualZoneClimate" name="Specification.HasDualZoneClimate" checked />
+                            }
+                            else
+                            {
+                                <input type="checkbox" value="" id="HasDualZoneClimate" name="Specification.HasDualZoneClimate" />
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <label class="col-md-6">Has Full Electric Win</label>
+                        <div class="col-md-6">
+                            @if (Model.Specification.HasFullElectricWin)
+                            {
+                                <input type="checkbox" value="" id="HasFullElectricWin" name="Specification.HasFullElectricWin" checked />
+                            }
+                            else
+                            {
+                                <input type="checkbox" value="" id="HasFullElectricWin" name="Specification.HasFullElectricWin" />
+                            }
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <label class="col-md-6">Has Heated Seats</label>
+                        <div class="col-md-6">
+                            @if (Model.Specification.HasHeatedSeats)
+                            {
+                                <input type="checkbox" value="" id="HasHeatedSeats" name="Specification.HasHeatedSeats" checked />
+                            }
+                            else
+                            {
+                                <input type="checkbox" value="" id="HasHeatedSeats" name="Specification.HasHeatedSeats" />
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <label class="col-md-6">Has Vented Seats</label>
+                        <div class="col-md-6">
+                            @if (Model.Specification.HasVentedSeats)
+                            {
+                                <input type="checkbox" value="" id="HasVentedSeats" name="Specification.HasVentedSeats" checked />
+                            }
+                            else
+                            {
+                                <input type="checkbox" value="" id="HasVentedSeats" name="Specification.HasVentedSeats" />
+                            }
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <label class="col-md-6">Has Electric Mirrors</label>
+                        <div class="col-md-6">
+                            @if (Model.Specification.HasElectricMirrors)
+                            {
+                                <input type="checkbox" value="" id="HasElectricMirrors" name="Specification.HasElectricMirrors" checked />
+                            }
+                            else
+                            {
+                                <input type="checkbox" value="" id="HasElectricMirrors" name="Specification.HasElectricMirrors" />
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <label class="col-md-6">Has Heated St-Wheel</label>
+                        <div class="col-md-6">
+                            @if (Model.Specification.HasHeatedStWheel)
+                            {
+                                <input type="checkbox" value="" id="HasHeatedStWheel" name="Specification.HasHeatedStWheel" checked />
+                            }
+                            else
+                            {
+                                <input type="checkbox" value="" id="HasHeatedStWheel" name="Specification.HasHeatedStWheel" />
+                            }
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <label class="col-md-6">Had Accident</label>
+                        <div class="col-md-6">
+                            @if (Model.Specification.HadAccident)
+                            {
+                                <input type="checkbox" value="" id="HadAccident" name="Specification.HadAccident" checked />
+                            }
+                            else
+                            {
+                                <input type="checkbox" value="" id="HadAccident" name="Specification.HadAccident" />
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="row">
+                @foreach (var item in Model.AnnouncementImages)
+                {
+                    <div class="col-md-3 each-already-uploaded-image">
+                        <img class="img-fluid mb-2" src="@(item.ImagePath)" />
+
+                        @if (Model.CreatedBy == ViewBag.CurrentUserId)
+                        {
+                            <a href="/Announcements/RemoveImage?id=@item.AnnouncementImageId&&aId=@Model.AnnouncementId" class="col-md-12 btn btn-primary mb-3 text-white">Remove</a>
+                        }
+
+                    </div>
+                }
+            </div>
+
+
+            <div class="row" id="ImagesContainerDiv">
+
+            </div>
+
+            <hr />
+
+            <div class="row">
+                @if (!User.IsInRole("Admin") && !User.IsInRole("Moderator"))
+                {
+                    if (Model.CreatedBy == ViewBag.CurrentUserId || Model.AnnouncementId == Guid.Empty || Model.AnnouncementId == null)
+                    {
+                        <button type="button" class="btn btn-outline-primary" style="margin-right:5px;" onclick="App.SaveAnnouncement()">Save</button>
+                        <button type="button" class="btn btn-outline-success" onclick="App.MakeImageUploader()">Add Image</button>
+                    }
+                    else
+                    {
+                        <a class="btn btn-outline-primary" href="/Announcements/Messages?id=@Model.CreatedBy">Buy</a>
+                        <a class="btn btn-outline-success" href="/Announcements/Index">Cancel</a>
+                    }
+                }
+                else //Admin or moderator
+                {
+                    if (Model.IsApprovedByAdmin == false)
+                    {
+                        <button type="button" class="btn btn-outline-primary" style="margin-right:5px;" onclick="App.ApproveAnnouncement('@Model.AnnouncementId')">Approve</button>
+                    }
+                    <a class="btn btn-outline-success" href="/Announcements/Index">Cancel</a>
+                }
+            </div>
+
+        </form>
+    }
+    else
+    {
+        <div class="row text-center">
+            <h3 class="text-center alert alert-danger">You are not allowed to Add Announcements, Please contact Administrator</h3>
+        </div>
+    }
+
+</div>
