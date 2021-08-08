@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Racooter.DataTransferObjects.Announcement.CategoryDto>
+
+<div class="col-md-12">
+    <div class="row">
+        <h3>
+            <strong>Categories</strong>
+        </h3>
+    </div>
+    <div class="row">
+        <table class="table table-bordered table-striped" id="CategoriesGrid">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Name</td>
+                        <td>
+                            <a class="btn btn-danger" onclick="App.DeleteCategory(@item.Id)">X</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#CategoriesGrid').DataTable();
+    })
+</script>

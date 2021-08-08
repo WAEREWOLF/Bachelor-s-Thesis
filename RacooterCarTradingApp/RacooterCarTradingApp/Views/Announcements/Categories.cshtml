@@ -1,0 +1,25 @@
+﻿<div class="col-md-12">
+    <div class="row">
+        <div class="form-group row">
+            <div class="col-md-10">
+                <input type="text" data-id="0" id="txtCategoryName" class="form-control" />
+            </div>
+            <div class="col-md-2">
+                <a class="btn btn-primary" onclick="App.SaveCategory(this)">Save</a>
+            </div>
+        </div>
+    </div>
+
+    <hr />
+
+
+    <div class="row" id="CategoriesContainer">
+
+    </div>
+</div>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        App.LoadCategories();
+    });
+</script>

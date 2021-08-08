@@ -1,0 +1,35 @@
+﻿@model Racooter.DataTransferObjects.UserDto
+
+<div class="row">
+    <div class="form-horizontol col-md-12">
+        <h4>Update Account</h4>
+        <hr />
+
+        <div class="form-group">
+            <label>FullName</label>
+            <input value="@Model.FullName" id="txtFullName" class="form-control" />
+            <input type="hidden" id="hiddenUserID" value="@Model.id" />
+            <span class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label>Email</label>
+            <input disabled value="@Model.Email" id="txtEmail" class="form-control" />
+            <span class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label>Block User from Announcements</label>
+            <input type="checkbox" value="@Model.IsBlockFromPost" @(Model.IsBlockFromPost == true ? "checked" : "") id="txtIsBlockFromPost" />
+            <span class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label>Is Reported</label>
+            <input type="checkbox" value="@Model.IsReportedForBlock" @(Model.IsReportedForBlock == true ? "checked" : "") id="txtIsReportedForBlock" />
+            <span class="text-danger"></span>
+        </div>
+
+        <button type="button" class="btn btn-primary" onclick="App.UpdateUser()">Save</button>
+        <a class="btn btn-danger" href="/Users/Index">Cancel</a>
+    </div>
+</div>

@@ -1,0 +1,110 @@
+﻿
+<div class="container">
+    <div class="row text-center">
+        <h3>Announcements Homepage</h3>
+    </div>
+
+    <div class="row mb-5">
+        <div id="accordion" style="width:100%;">
+            <div class="card">
+                <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0 text-right">
+                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#FiltersContainerCollapse" aria-expanded="false" aria-controls="collapseTwo">
+                            Apply Filters
+                        </button>
+                    </h5>
+                </div>
+                <div id="FiltersContainerCollapse" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="col-md-12">Title</label>
+                                <div class="col-md-12">
+                                    <input type="text" id="ftrTitle" class="form-control" placeholder="Title" />
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="col-md-12">Category</label>
+                                <div class="col-md-12">
+                                    <select id="ftrCategory" class="form-control">
+                                        <option value="">Select Category</option>
+                                        @foreach (var item in ViewBag.Categories)
+                                        {
+                                            <option value="@item.Id">@item.Name</option>
+                                        }
+                                        <option>Select Category</option>
+                                        <option>Sample 1</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="col-md-12">Price</label>
+                                <div class="col-md-12">
+                                    <input type="number" id="ftrPrice" class="form-control" placeholder="Price" />
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="col-md-12">Model</label>
+                                <div class="col-md-12">
+                                    <input type="text" id="ftrModel" class="form-control" placeholder="Model" />
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="col-md-12">Make</label>
+                                <div class="col-md-12">
+                                    <input type="text" id="ftrMake" class="form-control" placeholder="Make" />
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="col-md-12">Year</label>
+                                <div class="col-md-12">
+                                    <input type="number" id="ftrYear" class="form-control" placeholder="Year" />
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="col-md-12">Mileage</label>
+                                <div class="col-md-12">
+                                    <input type="number" id="ftrMileage" class="form-control" placeholder="Mileage" />
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="col-md-12">Power</label>
+                                <div class="col-md-12">
+                                    <input type="number" id="ftrPower" class="form-control" placeholder="Power" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-right text-white">
+                            <a id="btnFilterApply" class="btn btn-primary" onclick="App.LoadHomePageAnnouncements(this)">Apply</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" id="AnnouncementsContainer">
+
+        <div class="col-md-12">
+            <h3 class="text-center alert alert-warning">Please wait while loading data!!!</h3>
+        </div>
+    </div>
+
+    <div class="row" id="PaginationContainer">
+        @* Pagination things will be here *@
+    </div>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#btnFilterApply').trigger('click');
+    });
+</script>

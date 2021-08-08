@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Racooter.DataTransferObjects.Announcement.AnnouncementDto>
+@{ 
+    int count = 1;
+}
+<div class="col-md-12 text-center">
+    <h2>List of Announcements</h2>
+    @if (ViewBag.IsAllowedForAnnouncement == true)
+    {
+        <div class="row">
+            <a class="btn btn-primary" href="/Announcements/AddUpdate">New Announcement</a>
+        </div>
+    }
+    <div class="row" style="margin-top:20px;">
+        <table class="table table-borderless" id="AnnouncementsGrid">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Title</th>
+                    <th>Price</th>
+                    <th>Category</th>
+                    <th>Created Date</th>
+                    <th>Status</th>
+                    <th>Views</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@count</td>
+                        <td>@item.Title</td>
+                        <td>@item.Price</td>
+                        <td>@item.CategoryString</td>
+                        <td>@item.CreatedDate.ToString("MMMM dd, yyyy")</td>
+                        <td>@(item.IsApprovedByAdmin?"Approved":"Pending Approval")</td>
+                        <td>@item.Views</td>
+                        <td>
+                            <a href="/Announcements/Announcement?Id=@item.AnnouncementId">
+                                <i class="fa fa-eye"></i>
+                            </a>
+                            |
+                            <a href="/Announcements/AddUpdate?Id=@item.AnnouncementId">
+                                <i class="fa fa-pencil-square-o"></i>
+                                i
+                            </a>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <span>
+                                    |
+                                    <a href="/Announcements/Delete?id=@item.AnnouncementId">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </span>
+                            }
+                        </td>
+                    </tr>
+                    count++;
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#AnnouncementsGrid').DataTable();
+    })
+</script>

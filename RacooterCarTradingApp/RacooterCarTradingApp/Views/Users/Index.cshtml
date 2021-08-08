@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Racooter.DataTransferObjects.UserDto>
+@{
+    int count = 1;
+}
+
+    <div class="col-md-12">
+        <a href="/Identity/Account/Register" class="btn btn-primary">New</a>
+    </div>
+
+
+
+<div class="col-md-12">
+    <table class="table" id="UsersGrid">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Is Reported</th>
+                <th>Reported By</th>
+                <th>Is Blocked</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@count</td>
+                    <td>@item.FullName</td>
+                    <td>@item.Email</td>
+                    <td>@(item.IsReportedForBlock==true?"Yes":"No")</td>
+                    <td>@(item.ReportedBy)</td>
+                    <td>@(item.IsBlockFromPost==true?"Yes":"No")</td>
+                    <td>
+                        <a href="/Users/UpdateUser?id=@item.id" class="btn btn-outline-primary">Edit</a>
+
+                        <a href="/Users/DeleteUser?id=@item.id" class="btn btn-outline-danger">Delete</a>
+                    </td>
+                </tr>
+                count++;
+            }
+        </tbody>
+    </table>
+</div> 

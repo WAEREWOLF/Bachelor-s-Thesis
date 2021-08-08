@@ -1,0 +1,74 @@
+﻿@model IEnumerable<Racooter.DataAccess.Models.NewsPost>
+
+<style>
+    .row.each-post {
+        border: 1px solid #e5d6d6;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding:10px;
+    }
+</style>
+<div class="col-md-12">
+    @if (User.IsInRole("Admin"))
+    {
+        <div class="row mb-5" id="NewsPostsFormContainer">
+            <div class="form-group col-md-6">
+                <label class="col-md-12">Title</label>
+                <div class="col-md-12">
+                    <input type="text" id="txtPostTitle" class="form-control" placeholder="Title" />
+                </div>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label class="col-md-12">Sub-Title</label>
+                <div class="col-md-12">
+                    <input type="text" id="txtPostSubTitle" class="form-control" placeholder="Sub-Title" />
+                </div>
+            </div>
+
+            <div class="form-group col-md-12">
+                <label class="col-md-12">Content</label>
+                <div class="col-md-12">
+                    <input type="text" id="txtPostContent" class="form-control" placeholder="Content" />
+                </div>
+            </div>
+
+            <div class="col-md-12 mb-5">
+                <div class="col-md-12">
+                    <a class="btn btn-primary text-white" onclick="App.SaveNewsPost()">Save</a>
+                </div>
+            </div>
+
+            
+        </div>
+    }
+
+    <div class="col-md-12">
+
+        @foreach (var item in Model)
+        {
+            <div class="row each-post">
+                <div class="col-md-11">
+                    <h3>
+                        <strong>@item.Title</strong>
+                    </h3>
+                    <h5>
+                        @item.SubTitle
+                    </h5>
+                    <p>
+                        @item.Content
+                    </p>
+                </div>
+                <div class="col-md-1">
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a href="/Announcements/DeleteNewsPost?id=@item.Id">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                    }
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
