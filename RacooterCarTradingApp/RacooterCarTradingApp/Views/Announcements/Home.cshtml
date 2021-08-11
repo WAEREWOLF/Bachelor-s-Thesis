@@ -1,9 +1,6 @@
 ﻿
-<div class="container">
-    <div class="row text-center">
-        <h3>Announcements Homepage</h3>
-    </div>
-
+<div class="container">    
+    <img src="~/pictures/anouncement.jpg" style="height: 170px; display: block; margin-left: auto;margin-right: auto;" /><br />
     <div class="row mb-5">
         <div id="accordion" style="width:100%;">
             <div class="card">
@@ -31,9 +28,7 @@
                                         @foreach (var item in ViewBag.Categories)
                                         {
                                             <option value="@item.Id">@item.Name</option>
-                                        }
-                                        <option>Select Category</option>
-                                        <option>Sample 1</option>
+                                        }                                        
                                     </select>
                                 </div>
                             </div>

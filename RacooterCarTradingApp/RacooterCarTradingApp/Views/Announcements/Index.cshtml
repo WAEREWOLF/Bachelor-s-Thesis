@@ -3,7 +3,7 @@
     int count = 1;
 }
 <div class="col-md-12 text-center">
-    <h2>List of Announcements</h2>
+    <img src="~/pictures/announceGear.jpg" style="height: 180px; display: block; margin-left: auto;margin-right: auto;" /><br />
     @if (ViewBag.IsAllowedForAnnouncement == true)
     {
         <div class="row">
@@ -33,7 +33,7 @@
                         <td>@item.Price</td>
                         <td>@item.CategoryString</td>
                         <td>@item.CreatedDate.ToString("MMMM dd, yyyy")</td>
-                        <td>@(item.IsApprovedByAdmin?"Approved":"Pending Approval")</td>
+                        <td>@(item.IsApprovedByAdmin ? "Approved" : "Pending Approval")</td>
                         <td>@item.Views</td>
                         <td>
                             <a href="/Announcements/Announcement?Id=@item.AnnouncementId">
@@ -43,16 +43,14 @@
                             <a href="/Announcements/AddUpdate?Id=@item.AnnouncementId">
                                 <i class="fa fa-pencil-square-o"></i>
                                 i
-                            </a>
-                            @if (User.IsInRole("Admin"))
-                            {
+                            </a>                            
                                 <span>
                                     |
                                     <a href="/Announcements/Delete?id=@item.AnnouncementId">
                                         <i class="fa fa-trash"></i>
                                     </a>
                                 </span>
-                            }
+                            
                         </td>
                     </tr>
                     count++;

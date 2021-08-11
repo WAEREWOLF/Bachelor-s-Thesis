@@ -53,8 +53,8 @@
 
         @if (Model.CreatedBy != ViewBag.CurrentUserId)
         {
-            <a class="btn btn-primary" onclick="App.ReportSeller('@Model.CreatedBy')">Report Seller</a>
-            <a class="btn btn-primary" href="/Announcements/Messages?id=@Model.CreatedBy">Contact Seller</a>
+            <a class="btn btn-danger" onclick="App.ReportSeller('@Model.CreatedBy')">Report Seller</a>
+            <a class="btn btn-success" href="/Announcements/Messages?id=@Model.CreatedBy">Contact Seller</a>
         }
     </div>
 
@@ -62,8 +62,7 @@
 
         <div style="padding: 25px;margin: 10px; border: 1px solid #ebe4e4;">
             <div class="row">
-                <h3>
-                    Title:
+                <h3>                    
                     <strong>@Model.Title</strong>
                 </h3>
             </div>
@@ -74,7 +73,7 @@
                 </label>
 
                 <label class="col-md-3">
-                    <strong>@Model.Price</strong>
+                    <strong>@Model.Price $</strong>
                 </label>
 
                 <label class="col-md-3">

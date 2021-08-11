@@ -832,7 +832,9 @@ namespace Racooter.DataAccess.Repositories
             if (announcement != null)
             {
                 var specifications = _context.Specifications.Where(x => x.AnnouncementId == announcement.AnnouncementId).AsEnumerable();
+                var announcementImages = _context.AnnouncementImages.Where(x => x.AnnouncementId == announcement.AnnouncementId).AsEnumerable(); 
                 _context.Specifications.RemoveRange(specifications);
+                _context.AnnouncementImages.RemoveRange(announcementImages);
                 _context.Announcements.Remove(announcement);
                 await _context.SaveChangesAsync();
             }

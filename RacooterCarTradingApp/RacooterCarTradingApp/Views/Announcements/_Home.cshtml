@@ -9,9 +9,9 @@
     @if (Model.Where(x => x.FilterColumn != null && x.FilterColumn != Char.MinValue).Count() > 0)
     {
         <div class="col-md-12">
-            <h3 class="alert alert-success">
+            <h3 class="alert alert-warning">
                 Recommended For You
-            </h3>
+            </h3><br />
         </div>
 
         <div class="row col-md-12" style="margin-bottom:20px;">
@@ -19,7 +19,7 @@
             {
                 <div class="col-md-3 mb-5">
                     <div class="card" style="width: 100%;">
-                        <img class="card-img-top" src="@( item.ImagesPath.Count()==0?"/pictures/no-image-icon-23485.png" :item.ImagesPath.FirstOrDefault())" alt="Card image cap">
+                        <img class="card-img-top" style="height: 140px" src="@( item.ImagesPath.Count()==0?"/pictures/no-image-icon-23485.png" :item.ImagesPath.FirstOrDefault())" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">
                                 @if (User.Identity.IsAuthenticated)
@@ -31,11 +31,13 @@
                                     <a>@item.Title</a>
                                 }
                             </h5>
-                            <p class="card-text">Price: @item.Price</p>
-                            <p class="card-text">Category: @item.CategoryString</p>
+                            <p class="card-text"><strong>Price: </strong>@item.Price $</p>
+                            <p class="card-text"><strong>Date: </strong>@item.CreatedDate</p>
+                            <p class="card-text"><strong>Category: </strong>@item.CategoryString</p>
+                            <p class="card-text"><strong>Views: </strong>@item.Views</p>
                             @if (item.CreatedBy != ViewBag.CurrentUserId)
                             {
-                                <a href="/Announcements/Messages?id=@item.CreatedBy" class="btn btn-primary">Contact Seller</a>
+                                <a href="/Announcements/Messages?id=@item.CreatedBy" class="btn btn-success">Contact Seller</a>
                             }
                         </div>
                     </div>
@@ -53,13 +55,16 @@
     {
         <div class="col-md-3 mb-5">
             <div class="card" style="width: 100%;">
-                <img class="card-img-top" src="@( item.ImagesPath.Count()==0?"/pictures/no-image-icon-23485.png" :item.ImagesPath.FirstOrDefault())" alt="Card image cap">
+                <img class="card-img-top" style="height: 140px" src="@( item.ImagesPath.Count()==0?"/pictures/no-image-icon-23485.png" :item.ImagesPath.FirstOrDefault())" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title">
                         <a href="/Announcements/Announcement?Id=@item.AnnouncementId">@item.Title</a>
                     </h5>
-                    <p class="card-text">Price: @item.Price</p>
-                    <p class="card-text">Category: @item.CategoryString</p>
+                    <p class="card-text"><strong>Price: </strong>@item.Price $</p>
+                    <p class="card-text"><strong>Date: </strong>@item.CreatedDate</p>
+                    <p class="card-text"><strong>Category: </strong>@item.CategoryString</p>
+                    <p class="card-text"><strong>Views: </strong>@item.Views</p>
+
                     @if (item.CreatedBy != ViewBag.CurrentUserId)
                     {
                         <a href="/Announcements/Messages?id=@item.CreatedBy" class="btn btn-primary">Contact Seller</a>
