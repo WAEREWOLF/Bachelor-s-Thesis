@@ -8,8 +8,11 @@
         padding:10px;
     }
 </style>
+<div style="text-align:center; padding-top: 2%">    
+    <img src="~/pictures/newsletter.jpg" style="height:170px;" /><br />
+</div>
 <div class="col-md-12">
-    @if (User.IsInRole("Admin"))
+    @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
     {
         <div class="row mb-5" id="NewsPostsFormContainer">
             <div class="form-group col-md-6">
