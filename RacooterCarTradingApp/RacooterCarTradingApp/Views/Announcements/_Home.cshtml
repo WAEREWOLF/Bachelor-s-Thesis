@@ -20,7 +20,7 @@
                 <div class="col-md-3 mb-5">
                     <div class="card" style="width: 100%;">
                         <img class="card-img-top" style="height: 140px" src="@( item.ImagesPath.Count()==0?"/pictures/no-image-icon-23485.png" :item.ImagesPath.FirstOrDefault())" alt="Card image cap">
-                        <div class="card-body">
+                        <div class="card-body" style="background-color: #F5F5F5">
                             <h5 class="card-title">
                                 @if (User.Identity.IsAuthenticated)
                                 {
@@ -56,7 +56,7 @@
         <div class="col-md-3 mb-5">
             <div class="card" style="width: 100%;">
                 <img class="card-img-top" style="height: 140px" src="@( item.ImagesPath.Count()==0?"/pictures/no-image-icon-23485.png" :item.ImagesPath.FirstOrDefault())" alt="Card image cap">
-                <div class="card-body">
+                <div class="card-body" style="background-color: whitesmoke">
                     <h5 class="card-title">
                         <a href="/Announcements/Announcement?Id=@item.AnnouncementId">@item.Title</a>
                     </h5>
