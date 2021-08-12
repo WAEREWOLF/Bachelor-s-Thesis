@@ -14,9 +14,8 @@ namespace Racooter.DataAccess.Models
         public int Views { get; set; }
         public DateTime Date { get; set; }
         public bool IsApprovedByAdmin { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public string CreatedBy { get; set; }
+        public DateTime CreatedDate { get; set; }               
+        public ApplicationUser SellerInfo { get; set; }
     }
-
 
 }

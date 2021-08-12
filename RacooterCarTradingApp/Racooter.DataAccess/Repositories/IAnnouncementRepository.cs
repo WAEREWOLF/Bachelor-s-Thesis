@@ -16,7 +16,7 @@ namespace Racooter.DataAccess.Repositories
     public interface IAnnouncementRepository : IRepository<Announcement>
     {
         public Task<AnnouncementDto> AddUpdate(Guid? Id);
-        public Task<Guid> SaveAnnouncement(AnnouncementDto data, string CurrentUserId);
+        public Task<Guid> SaveAnnouncement(AnnouncementDto data, string CurrentUserId);        
         Task<List<CategoryDto>> GetCategoriesAsync();
         Task SaveCategoryAsync(int id, string name);
         Task DeleteCategory(int id);
@@ -38,7 +38,7 @@ namespace Racooter.DataAccess.Repositories
         Task<List<NewsPost>> GetNewsPostsAsync();
         Task<bool> IsAllowForAnnouncementCreation(string CurrentUserEmail);
         Task DeleteAnnouncement(Guid id);
-        Task ReportUser(string UserIdToReport, string CurrentUserId);
+        Task ReportUser(string UserIdToReport, string CurrentUserId);        
     }
 
     public class AnnouncementRepository : Repository<Announcement>, IAnnouncementRepository
@@ -59,7 +59,7 @@ namespace Racooter.DataAccess.Repositories
                 {
                     AnnouncementId = x.AnnouncementId,
                     Category = x.Category,
-                    CreatedBy = x.CreatedBy,
+                    CreatedBy = x.SellerInfo.Id,
                     CreatedDate = x.CreatedDate,
                     Date = x.Date,
                     Description = x.Description,
@@ -67,6 +67,8 @@ namespace Racooter.DataAccess.Repositories
                     Price = x.Price,
                     Title = x.Title,
                     Views = x.Views,
+                    UserName = x.SellerInfo.FullName,
+                    UserEmail = x.SellerInfo.Email
 
                 }).FirstOrDefaultAsync();
 
@@ -189,8 +191,8 @@ namespace Racooter.DataAccess.Repositories
                 ann.Price = data.Price;
                 ann.CreatedDate = DateTime.Now;
                 ann.Views = 0;
-                ann.IsApprovedByAdmin = false;
-                ann.CreatedBy = CurrentUserId;
+                ann.IsApprovedByAdmin = false;                                
+                ann.SellerInfo = GetSeller(CurrentUserId);
 
                 Add(ann);
                 await _context.SaveChangesAsync();
@@ -241,6 +243,11 @@ namespace Racooter.DataAccess.Repositories
                 Id = x.Id,
                 Name = x.Name
             }).ToListAsync();
+        }
+
+        public ApplicationUser GetSeller(string sellerId)
+        {
+            return _context.Users.Where(x => x.Id == sellerId).FirstOrDefault();
         }
 
         public async Task Approve(Guid guid)
@@ -387,7 +394,9 @@ namespace Racooter.DataAccess.Repositories
                 Price = x.Announcement.Price,
                 Title = x.Announcement.Title,
                 Views = x.Announcement.Views,
-                CreatedBy = x.Announcement.CreatedBy
+                CreatedBy = x.Announcement.SellerInfo.Id,
+                UserName = x.Announcement.SellerInfo.FullName,
+                UserEmail = x.Announcement.SellerInfo.Email
             }).ToListAsync();
 
 

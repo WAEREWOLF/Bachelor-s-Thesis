@@ -17,6 +17,8 @@ namespace Racooter.DataTransferObjects.Announcement
         public bool IsApprovedByAdmin { get; set; }
         public DateTime CreatedDate { get; set; }
         public string CreatedBy { get; set; }
+        public string UserName { get; set; }
+        public string UserEmail { get; set; }
         public SpecificationDto Specification { get; set; }
 
         public List<AnnouncementImageDto> AnnouncementImages { get; set; }

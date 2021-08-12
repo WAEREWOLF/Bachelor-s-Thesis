@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Racooter.DataAccess.DbContext;
 
 namespace RacooterCarTradingApp.Data.Migrations
 {
     [DbContext(typeof(RacooterDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210812223920_mig5")]
+    partial class mig5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -159,6 +161,9 @@ namespace RacooterCarTradingApp.Data.Migrations
                     b.Property<int>("Category")
                         .HasColumnType("int");
 
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
@@ -174,18 +179,19 @@ namespace RacooterCarTradingApp.Data.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("SellerInfoId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Views")
                         .HasColumnType("int");
 
                     b.HasKey("AnnouncementId");
-
-                    b.HasIndex("SellerInfoId");
 
                     b.ToTable("Announcements");
                 });
@@ -700,15 +706,6 @@ namespace RacooterCarTradingApp.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Racooter.DataAccess.Models.Announcement", b =>
-                {
-                    b.HasOne("Racooter.DataAccess.Models.ApplicationUser", "SellerInfo")
-                        .WithMany()
-                        .HasForeignKey("SellerInfoId");
-
-                    b.Navigation("SellerInfo");
                 });
 
             modelBuilder.Entity("Racooter.DataAccess.Models.AnnouncementHistoryImage", b =>
