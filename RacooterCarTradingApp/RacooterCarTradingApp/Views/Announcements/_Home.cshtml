@@ -38,7 +38,7 @@
                             <p class="card-text"><strong>Views: </strong>@item.Views</p>
                             @if (item.CreatedBy != ViewBag.CurrentUserId)
                             {
-                                <a href="/Announcements/Messages?id=@item.CreatedBy" class="btn btn-success">Contact Seller</a>
+                                <a href="/Announcements/Messages?id=@item.CreatedBy" class="btn btn-warning" style="color: black">Contact Seller</a>
                             }
                         </div>
                     </div>
@@ -69,7 +69,7 @@
 
                     @if (item.CreatedBy != ViewBag.CurrentUserId)
                     {
-                        <a href="/Announcements/Messages?id=@item.CreatedBy" class="btn btn-primary">Contact Seller</a>
+                        <a href="/Announcements/Messages?id=@item.CreatedBy" class="btn btn-success">Contact Seller</a>
                     }
                 </div>
             </div>

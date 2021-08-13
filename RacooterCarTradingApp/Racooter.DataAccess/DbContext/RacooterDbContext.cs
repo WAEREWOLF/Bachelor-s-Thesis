@@ -19,8 +19,7 @@ namespace Racooter.DataAccess.DbContext
         public DbSet<AnnouncementImage> AnnouncementImages { get; set; }
         public DbSet<Specification> Specifications { get; set; }
         public DbSet<History> Histories { get; set; }
-        public DbSet<AnnouncementHistoryImage> AnnouncementHistoryImages { get; set; }
-        public DbSet<SpecificationHistory> SpecificationHistories { get; set; }
+        public DbSet<AnnouncementHistoryImage> AnnouncementHistoryImages { get; set; }        
         public DbSet<Category> Categories { get; set; }
         public DbSet<Message> Messages { get; set; }
         public DbSet<ApplicationUser> Users { get; set; }

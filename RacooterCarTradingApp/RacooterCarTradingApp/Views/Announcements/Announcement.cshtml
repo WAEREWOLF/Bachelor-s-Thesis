@@ -38,6 +38,7 @@
                     <img class="d-block w-100" src="/pictures/logo.png" alt="Third slide">
                 </div>*@
         </div>
+
         <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
@@ -48,277 +49,261 @@
         </a>
     </div>
 
-
-    
-
-        <div style="padding: 25px;margin: 10px;border: 1px solid #000000; background-color: #F5F5F5">
-            <div class="row" text-black>
-                <label class="col-md-2">
-                    Seller Name:
-                </label>
-
-                <label class="col-md-2">
-                    <strong>@Model.UserName</strong>
-                </label>
-                <label class="col-md-2">
-                    Seller Email:
-                </label>
-
-                <label class="col-md-2">
-                    <strong>@Model.UserEmail</strong>
-                </label>
-            </div>
-            <div class="col-md-3">
+    <div style="padding-top: 2%; padding-bottom: 2%; padding-left: 2%;">
+        <div class="card" style="width: 18rem; background-color: #F0F8FF;">
+            <div class="card-body">
+                <h5 class="card-title" style="text-align: center">Seller Contact</h5><br />
+                <h6 class="card-subtitle mb-2 text-muted"><strong>Name:</strong> @Model.UserName</h6>
+                <p class="card-text">Email: <strong> @Model.UserEmail</strong></p>
                 @if (Model.CreatedBy != ViewBag.CurrentUserId)
                 {
-                    <a class="btn btn-danger" onclick="App.ReportSeller('@Model.CreatedBy')">Report Seller</a>
+                    <a class="btn btn-danger" style="color: white" onclick="App.ReportSeller('@Model.CreatedBy')">Report Seller</a>
                     <a class="btn btn-success" href="/Announcements/Messages?id=@Model.CreatedBy">Contact Seller</a>
                 }
             </div>
         </div>
-    
+    </div>
+    <div class="col-md-12">
 
-        <div class="col-md-12">
-
-            <div style="padding: 25px;margin: 10px; border: 1px solid #000000; background-color: #F5F5F5">
-                <div class="row">
-                    <h3>
-                        <strong>@Model.Title</strong>
-                    </h3>
-                </div>
-
-                <div class="row">
-                    <label class="col-md-3">
-                        Price:
-                    </label>
-
-                    <label class="col-md-3">
-                        <strong>@Model.Price $</strong>
-                    </label>
-
-                    <label class="col-md-3">
-                        Category:
-                    </label>
-                    <label class="col-md-3">
-                        <strong>@Model.CategoryString</strong>
-                    </label>
-                </div>
-
-                <div class="row">
-                    <label class="col-md-3">
-                        Description:
-                    </label>
-                    <label class="col-md-9">
-                        <strong>
-                            @Model.Description
-                        </strong>
-                    </label>
-                </div>
+        <div style="padding: 25px;margin: 10px; border: 1px solid #000000; background-color: #F5F5F5">
+            <div class="row">
+                <h3>
+                    <strong>@Model.Title</strong>
+                </h3>
             </div>
 
+            <div class="row">
+                <label class="col-md-3">
+                    Price:
+                </label>
 
-            <div style="padding: 25px;margin: 10px;border: 1px solid #000000; background-color: #F5F5F5">
-                <div class="row">
-                    <label class="col-md-2">
-                        Make:
-                    </label>
+                <label class="col-md-3">
+                    <strong>@Model.Price $</strong>
+                </label>
 
-                    <label class="col-md-2">
-                        <strong>@Model.Specification.Make</strong>
-                    </label>
-
-                    <label class="col-md-2">
-                        Model:
-                    </label>
-                    <label class="col-md-2">
-                        <strong>@Model.Specification.Model</strong>
-                    </label>
-                    <label class="col-md-2">
-                        Year:
-                    </label>
-                    <label class="col-md-2">
-                        <strong>@Model.Specification.Year</strong>
-                    </label>
-                </div>
-
-
-                <div class="row">
-                    <label class="col-md-2">
-                        Mileage:
-                    </label>
-
-                    <label class="col-md-2">
-                        <strong>@Model.Specification.Mileage</strong>
-                    </label>
-
-                    <label class="col-md-2">
-                        Power:
-                    </label>
-                    <label class="col-md-2">
-                        <strong>@Model.Specification.Power</strong>
-                    </label>
-                    <label class="col-md-2">
-                        BodyType:
-                    </label>
-                    <label class="col-md-2">
-                        <strong>@Model.Specification.BodyTypeSelected</strong>
-                    </label>
-                </div>
-
-
-                <div class="row">
-                    <label class="col-md-2">
-                        Nof of Doors:
-                    </label>
-
-                    <label class="col-md-2">
-                        <strong>@Model.Specification.NrOfDoors</strong>
-                    </label>
-
-                    <label class="col-md-2">
-                        Engine Size:
-                    </label>
-                    <label class="col-md-2">
-                        <strong>@Model.Specification.EngineSize</strong>
-                    </label>
-                </div>
-
-
-                <div class="row">
-                    <label class="col-md-2">
-                        Emissions:
-                    </label>
-
-                    <label class="col-md-2">
-                        <strong>@Model.Specification.Emissions</strong>
-                    </label>
-
-                    <label class="col-md-2">
-                        Color:
-                    </label>
-                    <label class="col-md-2">
-                        <strong>@Model.Specification.Color</strong>
-                    </label>
-                    <label class="col-md-2">
-                        Is Negotiable:
-                    </label>
-                    <label class="col-md-2">
-                        <strong>@(Model.Specification.IsNegotiable==true?"Yes":"No")</strong>
-                    </label>
-                </div>
-
-                <div class="row">
-                    <label class="col-md-2">
-                        Is Full Options:
-                    </label>
-
-                    <label class="col-md-2">
-                        <strong>@(Model.Specification.IsFullOptions==true?"Yes":"No")</strong>
-                    </label>
-
-                    <label class="col-md-2">
-                        Has ABS:
-                    </label>
-                    <label class="col-md-2">
-                        <strong>@(Model.Specification.HasABS==true?"Yes":"No")</strong>
-                    </label>
-                    <label class="col-md-2">
-                        Has ESP:
-                    </label>
-                    <label class="col-md-2">
-                        <strong>@(Model.Specification.HasESP==true?"Yes":"No")</strong>
-                    </label>
-                </div>
-
-                <div class="row">
-                    <label class="col-md-2">
-                        Has Warranty:
-                    </label>
-
-                    <label class="col-md-2">
-                        <strong>@(Model.Specification.HasWarranty==true?"Yes":"No")</strong>
-                    </label>
-
-                    <label class="col-md-2">
-                        Has Log History:
-                    </label>
-                    <label class="col-md-2">
-                        <strong>@(Model.Specification.HasLogHistory==true?"Yes":"No")</strong>
-                    </label>
-                    <label class="col-md-2">
-                        Has Cruise Control:
-                    </label>
-                    <label class="col-md-2">
-                        <strong>@(Model.Specification.HasCruiseControl==true?"Yes":"No")</strong>
-                    </label>
-                </div>
-
-                <div class="row">
-                    <label class="col-md-2">
-                        Has Dual Zone Climate:
-                    </label>
-
-                    <label class="col-md-2">
-                        <strong>@(Model.Specification.HasDualZoneClimate==true?"Yes":"No")</strong>
-                    </label>
-
-                    <label class="col-md-2">
-                        Has Full Electric Win:
-                    </label>
-                    <label class="col-md-2">
-                        <strong>@(Model.Specification.HasFullElectricWin==true?"Yes":"No")</strong>
-                    </label>
-                    <label class="col-md-2">
-                        Has Heated Seats:
-                    </label>
-                    <label class="col-md-2">
-                        <strong>@(Model.Specification.HasHeatedSeats==true?"Yes":"No")</strong>
-                    </label>
-                </div>
-
-                <div class="row">
-                    <label class="col-md-2">
-                        Has Vented Seats:
-                    </label>
-
-                    <label class="col-md-2">
-                        <strong>@(Model.Specification.HasVentedSeats==true?"Yes":"No")</strong>
-                    </label>
-
-                    <label class="col-md-2">
-                        Has Electric Mirrors:
-                    </label>
-                    <label class="col-md-2">
-                        <strong>@(Model.Specification.HasElectricMirrors==true?"Yes":"No")</strong>
-                    </label>
-                    <label class="col-md-2">
-                        Has Heated St Wheel:
-                    </label>
-                    <label class="col-md-2">
-                        <strong>@(Model.Specification.HasHeatedStWheel==true?"Yes":"No")</strong>
-                    </label>
-                </div>
-
-
-                <div class="row">
-                    <label class="col-md-2">
-                        Had Accident:
-                    </label>
-
-                    <label class="col-md-2">
-                        <strong>@(Model.Specification.HadAccident==true?"Yes":"No")</strong>
-                    </label>
-                    <label class="col-md-2">
-                        Fuel Type:
-                    </label>
-
-                    <label class="col-md-2">
-                        <strong>@Model.Specification.FuelTypeSelected</strong>
-                    </label>
-                </div>
+                <label class="col-md-3">
+                    Category:
+                </label>
+                <label class="col-md-3">
+                    <strong>@Model.CategoryString</strong>
+                </label>
             </div>
 
-
+            <div class="row">
+                <label class="col-md-3">
+                    Description:
+                </label>
+                <label class="col-md-9">
+                    <strong>
+                        @Model.Description
+                    </strong>
+                </label>
+            </div>
         </div>
 
+
+        <div style="padding: 25px;margin: 10px;border: 1px solid #000000; background-color: #F5F5F5">
+            <div class="row">
+                <label class="col-md-2">
+                    Make:
+                </label>
+
+                <label class="col-md-2">
+                    <strong>@Model.Specification.Make</strong>
+                </label>
+
+                <label class="col-md-2">
+                    Model:
+                </label>
+                <label class="col-md-2">
+                    <strong>@Model.Specification.Model</strong>
+                </label>
+                <label class="col-md-2">
+                    Year:
+                </label>
+                <label class="col-md-2">
+                    <strong>@Model.Specification.Year</strong>
+                </label>
+            </div>
+
+
+            <div class="row">
+                <label class="col-md-2">
+                    Mileage:
+                </label>
+
+                <label class="col-md-2">
+                    <strong>@Model.Specification.Mileage</strong>
+                </label>
+
+                <label class="col-md-2">
+                    Power:
+                </label>
+                <label class="col-md-2">
+                    <strong>@Model.Specification.Power</strong>
+                </label>
+                <label class="col-md-2">
+                    BodyType:
+                </label>
+                <label class="col-md-2">
+                    <strong>@Model.Specification.BodyTypeSelected</strong>
+                </label>
+            </div>
+
+
+            <div class="row">
+                <label class="col-md-2">
+                    Nof of Doors:
+                </label>
+
+                <label class="col-md-2">
+                    <strong>@Model.Specification.NrOfDoors</strong>
+                </label>
+
+                <label class="col-md-2">
+                    Engine Size:
+                </label>
+                <label class="col-md-2">
+                    <strong>@Model.Specification.EngineSize</strong>
+                </label>
+            </div>
+
+
+            <div class="row">
+                <label class="col-md-2">
+                    Emissions:
+                </label>
+
+                <label class="col-md-2">
+                    <strong>@Model.Specification.Emissions</strong>
+                </label>
+
+                <label class="col-md-2">
+                    Color:
+                </label>
+                <label class="col-md-2">
+                    <strong>@Model.Specification.Color</strong>
+                </label>
+                <label class="col-md-2">
+                    Is Negotiable:
+                </label>
+                <label class="col-md-2">
+                    <strong>@(Model.Specification.IsNegotiable==true?"Yes":"No")</strong>
+                </label>
+            </div>
+
+            <div class="row">
+                <label class="col-md-2">
+                    Is Full Options:
+                </label>
+
+                <label class="col-md-2">
+                    <strong>@(Model.Specification.IsFullOptions==true?"Yes":"No")</strong>
+                </label>
+
+                <label class="col-md-2">
+                    Has ABS:
+                </label>
+                <label class="col-md-2">
+                    <strong>@(Model.Specification.HasABS==true?"Yes":"No")</strong>
+                </label>
+                <label class="col-md-2">
+                    Has ESP:
+                </label>
+                <label class="col-md-2">
+                    <strong>@(Model.Specification.HasESP==true?"Yes":"No")</strong>
+                </label>
+            </div>
+
+            <div class="row">
+                <label class="col-md-2">
+                    Has Warranty:
+                </label>
+
+                <label class="col-md-2">
+                    <strong>@(Model.Specification.HasWarranty==true?"Yes":"No")</strong>
+                </label>
+
+                <label class="col-md-2">
+                    Has Log History:
+                </label>
+                <label class="col-md-2">
+                    <strong>@(Model.Specification.HasLogHistory==true?"Yes":"No")</strong>
+                </label>
+                <label class="col-md-2">
+                    Has Cruise Control:
+                </label>
+                <label class="col-md-2">
+                    <strong>@(Model.Specification.HasCruiseControl==true?"Yes":"No")</strong>
+                </label>
+            </div>
+
+            <div class="row">
+                <label class="col-md-2">
+                    Has Dual Zone Climate:
+                </label>
+
+                <label class="col-md-2">
+                    <strong>@(Model.Specification.HasDualZoneClimate==true?"Yes":"No")</strong>
+                </label>
+
+                <label class="col-md-2">
+                    Has Full Electric Win:
+                </label>
+                <label class="col-md-2">
+                    <strong>@(Model.Specification.HasFullElectricWin==true?"Yes":"No")</strong>
+                </label>
+                <label class="col-md-2">
+                    Has Heated Seats:
+                </label>
+                <label class="col-md-2">
+                    <strong>@(Model.Specification.HasHeatedSeats==true?"Yes":"No")</strong>
+                </label>
+            </div>
+
+            <div class="row">
+                <label class="col-md-2">
+                    Has Vented Seats:
+                </label>
+
+                <label class="col-md-2">
+                    <strong>@(Model.Specification.HasVentedSeats==true?"Yes":"No")</strong>
+                </label>
+
+                <label class="col-md-2">
+                    Has Electric Mirrors:
+                </label>
+                <label class="col-md-2">
+                    <strong>@(Model.Specification.HasElectricMirrors==true?"Yes":"No")</strong>
+                </label>
+                <label class="col-md-2">
+                    Has Heated St Wheel:
+                </label>
+                <label class="col-md-2">
+                    <strong>@(Model.Specification.HasHeatedStWheel==true?"Yes":"No")</strong>
+                </label>
+            </div>
+
+
+            <div class="row">
+                <label class="col-md-2">
+                    Had Accident:
+                </label>
+
+                <label class="col-md-2">
+                    <strong>@(Model.Specification.HadAccident==true?"Yes":"No")</strong>
+                </label>
+                <label class="col-md-2">
+                    Fuel Type:
+                </label>
+
+                <label class="col-md-2">
+                    <strong>@Model.Specification.FuelTypeSelected</strong>
+                </label>
+            </div>
+        </div>
+
+
     </div>
+
+</div>
