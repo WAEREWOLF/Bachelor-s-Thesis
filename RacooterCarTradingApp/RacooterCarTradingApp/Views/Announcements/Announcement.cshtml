@@ -55,6 +55,7 @@
                 <h5 class="card-title" style="text-align: center">Seller Contact</h5><br />
                 <h6 class="card-subtitle mb-2 text-muted"><strong>Name:</strong> @Model.UserName</h6>
                 <p class="card-text">Email: <strong> @Model.UserEmail</strong></p>
+                <p class="card-text">Posted: @Model.CreatedDate</p>
                 @if (Model.CreatedBy != ViewBag.CurrentUserId)
                 {
                     <a class="btn btn-danger" style="color: white" onclick="App.ReportSeller('@Model.CreatedBy')">Report Seller</a>
@@ -70,7 +71,7 @@
                 <h3>
                     <strong>@Model.Title</strong>
                 </h3>
-            </div>
+            </div><br />
 
             <div class="row">
                 <label class="col-md-3">
@@ -300,7 +301,8 @@
                 <label class="col-md-2">
                     <strong>@Model.Specification.FuelTypeSelected</strong>
                 </label>
-            </div>
+            </div><br />
+             <label class="fa fa-eye"> <strong>Views: @Model.Views</strong></label>
         </div>
 
 
