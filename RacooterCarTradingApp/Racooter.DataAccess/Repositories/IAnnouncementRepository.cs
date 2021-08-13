@@ -68,7 +68,9 @@ namespace Racooter.DataAccess.Repositories
                     Title = x.Title,
                     Views = x.Views,
                     UserName = x.SellerInfo.FullName,
-                    UserEmail = x.SellerInfo.Email
+                    UserEmail = x.SellerInfo.Email,
+                    Location = x.Location,
+                    PhoneNumber = x.PhoneNumber
 
                 }).FirstOrDefaultAsync();
 
@@ -144,6 +146,8 @@ namespace Racooter.DataAccess.Repositories
                     announcement.Description = data.Description;
                     announcement.Title = data.Title;
                     announcement.Price = data.Price;
+                    announcement.PhoneNumber = data.PhoneNumber;
+                    announcement.Location = data.Location;
                 }
                 if (data.Specification != null)
                 {
@@ -197,6 +201,8 @@ namespace Racooter.DataAccess.Repositories
                 ann.Views = 0;
                 ann.IsApprovedByAdmin = false;                                
                 ann.SellerInfo = GetSeller(CurrentUserId);
+                ann.Location = data.Location;
+                ann.PhoneNumber = data.PhoneNumber;
 
                 Add(ann);
                 await _context.SaveChangesAsync();
@@ -452,7 +458,9 @@ namespace Racooter.DataAccess.Repositories
                 Views = x.Announcement.Views,
                 CreatedBy = x.Announcement.SellerInfo.Id,
                 UserName = x.Announcement.SellerInfo.FullName,
-                UserEmail = x.Announcement.SellerInfo.Email
+                UserEmail = x.Announcement.SellerInfo.Email,
+                PhoneNumber = x.Announcement.PhoneNumber,
+                Location = x.Announcement.Location
             }).ToListAsync();
 
 

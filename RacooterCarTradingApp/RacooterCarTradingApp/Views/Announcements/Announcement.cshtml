@@ -55,6 +55,8 @@
                 <h5 class="card-title" style="text-align: center">Seller Contact</h5><br />
                 <h6 class="card-subtitle mb-2 text-muted"><strong>Name:</strong> @Model.UserName</h6>
                 <p class="card-text">Email: <strong> @Model.UserEmail</strong></p>
+                <p class="card-text">Phone: <strong> @Model.PhoneNumber</strong></p>
+                <p class="card-text">Location: <strong> @Model.Location</strong></p>
                 <p class="card-text">Posted: @Model.CreatedDate</p>
                 @if (Model.CreatedBy != ViewBag.CurrentUserId)
                 {

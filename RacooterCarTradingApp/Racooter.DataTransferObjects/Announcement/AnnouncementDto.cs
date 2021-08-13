@@ -19,6 +19,8 @@ namespace Racooter.DataTransferObjects.Announcement
         public string CreatedBy { get; set; }
         public string UserName { get; set; }
         public string UserEmail { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Location { get; set; }
         public SpecificationDto Specification { get; set; }
 
         public List<AnnouncementImageDto> AnnouncementImages { get; set; }

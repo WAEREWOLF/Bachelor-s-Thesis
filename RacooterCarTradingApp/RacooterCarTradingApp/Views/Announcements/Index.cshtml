@@ -4,12 +4,7 @@
 }
 <div class="col-md-12 text-center">
     <img src="~/pictures/announceGear.jpg" style="height: 180px; display: block; margin-left: auto;margin-right: auto;" /><br />
-    @if (ViewBag.IsAllowedForAnnouncement == true)
-    {
-        <div class="row">
-            <a class="btn btn-primary" href="/Announcements/AddUpdate">New Announcement</a>
-        </div>
-    }
+    
     <div class="row" style="margin-top:20px;">
         <table class="table table-borderless" id="AnnouncementsGrid">
             <thead>

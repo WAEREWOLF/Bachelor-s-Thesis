@@ -64,11 +64,27 @@
             </div>
 
             <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <label class="col-md-12">Location</label>
+                        <div class="col-md-12">
+                            <input type="text" id="Location" name="Location" value="@Model.Location" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <label class="col-md-12">Phone Number</label>
+                        <div class="col-md-12">
+                            <input type="tel" maxlength="10" id="PhoneNumber" placeholder="ex: 0775636091" name="PhoneNumber" value="@Model.PhoneNumber" class="form-control" />
+                        </div>
+                    </div>
+                </div>
                 <div class="col-md-12">
                     <div class="form-group row">
                         <label class="col-md-12">Description</label>
                         <div class="col-md-12">
-                            <input type="text" id="Description" name="Description" value="@Model.Description" class="form-control" />
+                            <input type="text"  id="Description" name="Description" value="@Model.Description" class="form-control" />
                         </div>
                     </div>
                 </div>
