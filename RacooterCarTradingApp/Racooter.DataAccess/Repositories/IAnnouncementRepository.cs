@@ -77,11 +77,13 @@ namespace Racooter.DataAccess.Repositories
                 model.Specification = await _context.Specifications.Where(x => x.AnnouncementId == Id.Value).Select(data => new SpecificationDto
                 {
                     BodyType = data.BodyType,
+                    BodyTypeSelected = data.BodyTypeSelected,
                     Color = data.Color,
                     Emissions = data.Emissions,
                     EngineSize = data.EngineSize,
                     GearBox = data.GearBox,
                     GetFuelType = data.GetFuelType,
+                    FuelTypeSelected = data.FuelTypeSelected,
                     HadAccident = data.HadAccident,
                     HasABS = data.HasABS,
                     HasCruiseControl = data.HasCruiseControl,
@@ -149,11 +151,13 @@ namespace Racooter.DataAccess.Repositories
                     if (specification != null)
                     {
                         specification.BodyType = data.Specification.BodyType;
+                        specification.BodyTypeSelected = data.Specification.BodyTypeSelected;
                         specification.Color = data.Specification.Color;
                         specification.Emissions = data.Specification.Emissions;
                         specification.EngineSize = data.Specification.EngineSize;
                         specification.GearBox = data.Specification.GearBox;
                         specification.GetFuelType = data.Specification.GetFuelType;
+                        specification.FuelTypeSelected = data.Specification.FuelTypeSelected;
                         specification.HadAccident = data.Specification.HadAccident;
                         specification.HasABS = data.Specification.HasABS;
                         specification.HasCruiseControl = data.Specification.HasCruiseControl;
@@ -202,11 +206,13 @@ namespace Racooter.DataAccess.Repositories
                     var specification = new Specification();
                     specification.AnnouncementId = ann.AnnouncementId;
                     specification.BodyType = data.Specification.BodyType;
+                    specification.BodyTypeSelected = GetBodyType(specification.BodyType);
                     specification.Color = data.Specification.Color;
                     specification.Emissions = data.Specification.Emissions;
                     specification.EngineSize = data.Specification.EngineSize;
                     specification.GearBox = data.Specification.GearBox;
                     specification.GetFuelType = data.Specification.GetFuelType;
+                    specification.FuelTypeSelected = GetFuelType(specification.GetFuelType);
                     specification.HadAccident = data.Specification.HadAccident;
                     specification.HasABS = data.Specification.HasABS;
                     specification.HasCruiseControl = data.Specification.HasCruiseControl;
@@ -248,6 +254,56 @@ namespace Racooter.DataAccess.Repositories
         public ApplicationUser GetSeller(string sellerId)
         {
             return _context.Users.Where(x => x.Id == sellerId).FirstOrDefault();
+        }
+
+        public string GetBodyType(int bodyTypeInt)
+        {
+            string result = "";
+            switch (bodyTypeInt)
+            {
+                case 1:
+                    result = "Cabrio";
+                    break;
+                case 2:
+                    result = "Sedan";
+                    break;
+                case 3:
+                    result = "Coupe";
+                    break;
+                case 4:
+                    result = "Hatchback";
+                    break;
+                case 5:
+                    result = "SUV";
+                    break;
+
+            }
+            return result;
+        }
+
+        public string GetFuelType(int? fuelTypeInt)
+        {
+            string result = "";
+            switch (fuelTypeInt)
+            {
+                case 1:
+                    result = "Diesel";
+                    break;
+                case 2:
+                    result = "GPL";
+                    break;
+                case 3:
+                    result = "Petrol";
+                    break;
+                case 4:
+                    result = "Electric";
+                    break;
+                case 5:
+                    result = "Hybrid";
+                    break;
+
+            }
+            return result;
         }
 
         public async Task Approve(Guid guid)

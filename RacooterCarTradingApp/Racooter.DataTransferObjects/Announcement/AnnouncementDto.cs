@@ -84,8 +84,10 @@ namespace Racooter.DataTransferObjects.Announcement
         public int? Year { get; set; }
         public int? Mileage { get; set; }
         public int? GetFuelType { get; set; }
+        public string FuelTypeSelected { get; set; }
         public int? Power { get; set; }
         public int BodyType { get; set; }
+        public string BodyTypeSelected { get; set; }
         public int? NrOfDoors { get; set; }
         public string GearBox { get; set; }
         public int EngineSize { get; set; }

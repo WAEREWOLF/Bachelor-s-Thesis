@@ -161,7 +161,7 @@
                         BodyType:
                     </label>
                     <label class="col-md-2">
-                        <strong>@Model.Specification.BodyType</strong>
+                        <strong>@Model.Specification.BodyTypeSelected</strong>
                     </label>
                 </div>
 
@@ -307,6 +307,13 @@
 
                     <label class="col-md-2">
                         <strong>@(Model.Specification.HadAccident==true?"Yes":"No")</strong>
+                    </label>
+                    <label class="col-md-2">
+                        Fuel Type:
+                    </label>
+
+                    <label class="col-md-2">
+                        <strong>@Model.Specification.FuelTypeSelected</strong>
                     </label>
                 </div>
             </div>
