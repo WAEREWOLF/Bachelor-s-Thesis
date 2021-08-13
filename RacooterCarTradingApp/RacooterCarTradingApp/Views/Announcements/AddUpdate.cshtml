@@ -6,10 +6,8 @@
     {
         <form action="/Announcements/AddUpdate" method="post">
 
-            <div class="row">
-                <h3>
-                    <strong>Announcement</strong>
-                </h3>
+            <div style="text-align:center; padding-top: 1%">
+                <img src="~/pictures/addan.jpg" style="height:170px;" /><br />
             </div>
 
             <input type="hidden" id="HiddenAnnouncementId" value="@Model.AnnouncementId" />
@@ -66,19 +64,35 @@
             </div>
 
             <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <label class="col-md-12">Location</label>
+                        <div class="col-md-12">
+                            <input type="text" id="Location" name="Location" value="@Model.Location" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <label class="col-md-12">Phone Number</label>
+                        <div class="col-md-12">
+                            <input type="tel" maxlength="10" id="PhoneNumber" placeholder="ex: 0775636091" name="PhoneNumber" value="@Model.PhoneNumber" class="form-control" />
+                        </div>
+                    </div>
+                </div>
                 <div class="col-md-12">
                     <div class="form-group row">
                         <label class="col-md-12">Description</label>
                         <div class="col-md-12">
-                            <input type="text" id="Description" name="Description" value="@Model.Description" class="form-control" />
+                            <input type="text"  id="Description" name="Description" value="@Model.Description" class="form-control" />
                         </div>
                     </div>
                 </div>
             </div>
-
+            <br />
             <div class="row">
-                <h3>Specification</h3>
-            </div>
+                <h3 style="display: block; margin-left: auto; margin-right: auto;">Specifications</h3>
+            </div><br />
 
             <div class="row">
                 <div class="col-md-6">

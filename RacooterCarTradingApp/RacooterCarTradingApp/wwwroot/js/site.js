@@ -8,7 +8,9 @@
             Category: $('#Category').val(),
             Price: $('#Price').val(),
             Date: $('#Date').val(),
-            Description: $('#Description').val()
+            Description: $('#Description').val(),
+            Location: $('#Location').val(),
+            PhoneNumber: $('#PhoneNumber').val()
         }
         if (obj.Title == undefined || obj.Title == "") {
             toastr.error('Title is required!');
@@ -25,6 +27,20 @@
         }
         if (obj.Category == undefined || obj.Category == "" || obj.Category == "-1") {
             toastr.error('Category is required!');
+            return false;
+        }
+        if (obj.Location == undefined || obj.Location == "") {
+            toastr.error('Location is required!');
+            return false;
+        }
+        if (obj.PhoneNumber == undefined || obj.PhoneNumber == "") {
+            toastr.error('Phone number is required!');
+            return false;
+        }
+
+        var regExp = /^\d+$/;
+        if (obj.PhoneNumber.length != 10 || !regExp.test(obj.PhoneNumber) || !obj.PhoneNumber.startsWith("0")) {
+            toastr.error('Phone number is invalid!');
             return false;
         }
         //toastr.success('Beautiful Message');

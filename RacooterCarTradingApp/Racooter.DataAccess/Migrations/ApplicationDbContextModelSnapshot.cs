@@ -159,9 +159,6 @@ namespace RacooterCarTradingApp.Data.Migrations
                     b.Property<int>("Category")
                         .HasColumnType("int");
 
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
@@ -174,8 +171,17 @@ namespace RacooterCarTradingApp.Data.Migrations
                     b.Property<bool>("IsApprovedByAdmin")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Location")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("SellerInfoId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
@@ -184,6 +190,8 @@ namespace RacooterCarTradingApp.Data.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("AnnouncementId");
+
+                    b.HasIndex("SellerInfoId");
 
                     b.ToTable("Announcements");
                 });
@@ -470,6 +478,9 @@ namespace RacooterCarTradingApp.Data.Migrations
                     b.Property<int>("BodyType")
                         .HasColumnType("int");
 
+                    b.Property<string>("BodyTypeSelected")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Color")
                         .HasColumnType("nvarchar(max)");
 
@@ -478,6 +489,9 @@ namespace RacooterCarTradingApp.Data.Migrations
 
                     b.Property<int>("EngineSize")
                         .HasColumnType("int");
+
+                    b.Property<string>("FuelTypeSelected")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("GearBox")
                         .HasColumnType("nvarchar(max)");
@@ -552,103 +566,6 @@ namespace RacooterCarTradingApp.Data.Migrations
                     b.ToTable("Specifications");
                 });
 
-            modelBuilder.Entity("Racooter.DataAccess.Models.SpecificationHistory", b =>
-                {
-                    b.Property<Guid>("SpecificationHistoryId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("AnnouncementId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("BodyType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Color")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Emissions")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("EngineSize")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("GearBox")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("GetFuelType")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("HadAccident")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("HasABS")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("HasCruiseControl")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("HasDualZoneClimate")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("HasESP")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("HasElectricMirrors")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("HasFullElectricWin")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("HasHeatedSeats")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("HasHeatedStWheel")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("HasLogHistory")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("HasVentedSeats")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("HasWarranty")
-                        .HasColumnType("bit");
-
-                    b.Property<Guid?>("HistoryId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("IsFullOptions")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsNegotiable")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Make")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Mileage")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Model")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("NrOfDoors")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Power")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Year")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("SpecificationHistoryId");
-
-                    b.HasIndex("HistoryId");
-
-                    b.ToTable("SpecificationHistories");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -700,6 +617,15 @@ namespace RacooterCarTradingApp.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Racooter.DataAccess.Models.Announcement", b =>
+                {
+                    b.HasOne("Racooter.DataAccess.Models.ApplicationUser", "SellerInfo")
+                        .WithMany()
+                        .HasForeignKey("SellerInfoId");
+
+                    b.Navigation("SellerInfo");
+                });
+
             modelBuilder.Entity("Racooter.DataAccess.Models.AnnouncementHistoryImage", b =>
                 {
                     b.HasOne("Racooter.DataAccess.Models.History", "History")
@@ -725,15 +651,6 @@ namespace RacooterCarTradingApp.Data.Migrations
                         .HasForeignKey("AnnouncementId");
 
                     b.Navigation("Announcement");
-                });
-
-            modelBuilder.Entity("Racooter.DataAccess.Models.SpecificationHistory", b =>
-                {
-                    b.HasOne("Racooter.DataAccess.Models.History", "History")
-                        .WithMany()
-                        .HasForeignKey("HistoryId");
-
-                    b.Navigation("History");
                 });
 #pragma warning restore 612, 618
         }

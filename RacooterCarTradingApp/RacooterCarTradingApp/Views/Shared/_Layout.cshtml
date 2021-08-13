@@ -10,6 +10,14 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" />
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+
+    <style>
+        body {
+            background-image: url("../../Images/back2.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -40,6 +48,7 @@
                                     }
                                     <a class="dropdown-item" href="/Announcements/Messages">Inbox</a>
                                     <a class="dropdown-item" href="/Announcements/NewsPosts">News Posts</a>
+                                    <a class="dropdown-item" href="/Announcements/Messages?id=29ba81b7-f5fa-4086-a9b7-3abc7dbf8796">Contact admin</a>
 
                                     @if (User.IsInRole("Admin"))
                                     {

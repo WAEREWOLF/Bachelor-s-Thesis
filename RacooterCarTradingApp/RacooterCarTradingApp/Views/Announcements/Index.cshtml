@@ -4,18 +4,14 @@
 }
 <div class="col-md-12 text-center">
     <img src="~/pictures/announceGear.jpg" style="height: 180px; display: block; margin-left: auto;margin-right: auto;" /><br />
-    @if (ViewBag.IsAllowedForAnnouncement == true)
-    {
-        <div class="row">
-            <a class="btn btn-primary" href="/Announcements/AddUpdate">New Announcement</a>
-        </div>
-    }
+    
     <div class="row" style="margin-top:20px;">
         <table class="table table-borderless" id="AnnouncementsGrid">
             <thead>
                 <tr>
                     <th>No</th>
                     <th>Title</th>
+                    <th>Seller</th>
                     <th>Price</th>
                     <th>Category</th>
                     <th>Created Date</th>
@@ -30,9 +26,10 @@
                     <tr>
                         <td>@count</td>
                         <td>@item.Title</td>
+                        <td>@item.UserName</td>
                         <td>@item.Price</td>
                         <td>@item.CategoryString</td>
-                        <td>@item.CreatedDate.ToString("MMMM dd, yyyy")</td>
+                        <td>@item.CreatedDate.ToString("MMMM dd, yyyy, hh:mm")</td>
                         <td>@(item.IsApprovedByAdmin ? "Approved" : "Pending Approval")</td>
                         <td>@item.Views</td>
                         <td>

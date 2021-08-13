@@ -17,6 +17,10 @@ namespace Racooter.DataTransferObjects.Announcement
         public bool IsApprovedByAdmin { get; set; }
         public DateTime CreatedDate { get; set; }
         public string CreatedBy { get; set; }
+        public string UserName { get; set; }
+        public string UserEmail { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Location { get; set; }
         public SpecificationDto Specification { get; set; }
 
         public List<AnnouncementImageDto> AnnouncementImages { get; set; }
@@ -82,8 +86,10 @@ namespace Racooter.DataTransferObjects.Announcement
         public int? Year { get; set; }
         public int? Mileage { get; set; }
         public int? GetFuelType { get; set; }
+        public string FuelTypeSelected { get; set; }
         public int? Power { get; set; }
         public int BodyType { get; set; }
+        public string BodyTypeSelected { get; set; }
         public int? NrOfDoors { get; set; }
         public string GearBox { get; set; }
         public int EngineSize { get; set; }

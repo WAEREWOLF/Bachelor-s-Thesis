@@ -16,7 +16,7 @@ namespace Racooter.DataAccess.Repositories
     public interface IAnnouncementRepository : IRepository<Announcement>
     {
         public Task<AnnouncementDto> AddUpdate(Guid? Id);
-        public Task<Guid> SaveAnnouncement(AnnouncementDto data, string CurrentUserId);
+        public Task<Guid> SaveAnnouncement(AnnouncementDto data, string CurrentUserId);        
         Task<List<CategoryDto>> GetCategoriesAsync();
         Task SaveCategoryAsync(int id, string name);
         Task DeleteCategory(int id);
@@ -38,7 +38,7 @@ namespace Racooter.DataAccess.Repositories
         Task<List<NewsPost>> GetNewsPostsAsync();
         Task<bool> IsAllowForAnnouncementCreation(string CurrentUserEmail);
         Task DeleteAnnouncement(Guid id);
-        Task ReportUser(string UserIdToReport, string CurrentUserId);
+        Task ReportUser(string UserIdToReport, string CurrentUserId);        
     }
 
     public class AnnouncementRepository : Repository<Announcement>, IAnnouncementRepository
@@ -59,7 +59,7 @@ namespace Racooter.DataAccess.Repositories
                 {
                     AnnouncementId = x.AnnouncementId,
                     Category = x.Category,
-                    CreatedBy = x.CreatedBy,
+                    CreatedBy = x.SellerInfo.Id,
                     CreatedDate = x.CreatedDate,
                     Date = x.Date,
                     Description = x.Description,
@@ -67,6 +67,10 @@ namespace Racooter.DataAccess.Repositories
                     Price = x.Price,
                     Title = x.Title,
                     Views = x.Views,
+                    UserName = x.SellerInfo.FullName,
+                    UserEmail = x.SellerInfo.Email,
+                    Location = x.Location,
+                    PhoneNumber = x.PhoneNumber
 
                 }).FirstOrDefaultAsync();
 
@@ -75,11 +79,13 @@ namespace Racooter.DataAccess.Repositories
                 model.Specification = await _context.Specifications.Where(x => x.AnnouncementId == Id.Value).Select(data => new SpecificationDto
                 {
                     BodyType = data.BodyType,
+                    BodyTypeSelected = data.BodyTypeSelected,
                     Color = data.Color,
                     Emissions = data.Emissions,
                     EngineSize = data.EngineSize,
                     GearBox = data.GearBox,
                     GetFuelType = data.GetFuelType,
+                    FuelTypeSelected = data.FuelTypeSelected,
                     HadAccident = data.HadAccident,
                     HasABS = data.HasABS,
                     HasCruiseControl = data.HasCruiseControl,
@@ -140,6 +146,8 @@ namespace Racooter.DataAccess.Repositories
                     announcement.Description = data.Description;
                     announcement.Title = data.Title;
                     announcement.Price = data.Price;
+                    announcement.PhoneNumber = data.PhoneNumber;
+                    announcement.Location = data.Location;
                 }
                 if (data.Specification != null)
                 {
@@ -147,11 +155,13 @@ namespace Racooter.DataAccess.Repositories
                     if (specification != null)
                     {
                         specification.BodyType = data.Specification.BodyType;
+                        specification.BodyTypeSelected = data.Specification.BodyTypeSelected;
                         specification.Color = data.Specification.Color;
                         specification.Emissions = data.Specification.Emissions;
                         specification.EngineSize = data.Specification.EngineSize;
                         specification.GearBox = data.Specification.GearBox;
                         specification.GetFuelType = data.Specification.GetFuelType;
+                        specification.FuelTypeSelected = data.Specification.FuelTypeSelected;
                         specification.HadAccident = data.Specification.HadAccident;
                         specification.HasABS = data.Specification.HasABS;
                         specification.HasCruiseControl = data.Specification.HasCruiseControl;
@@ -189,8 +199,10 @@ namespace Racooter.DataAccess.Repositories
                 ann.Price = data.Price;
                 ann.CreatedDate = DateTime.Now;
                 ann.Views = 0;
-                ann.IsApprovedByAdmin = false;
-                ann.CreatedBy = CurrentUserId;
+                ann.IsApprovedByAdmin = false;                                
+                ann.SellerInfo = GetSeller(CurrentUserId);
+                ann.Location = data.Location;
+                ann.PhoneNumber = data.PhoneNumber;
 
                 Add(ann);
                 await _context.SaveChangesAsync();
@@ -200,11 +212,13 @@ namespace Racooter.DataAccess.Repositories
                     var specification = new Specification();
                     specification.AnnouncementId = ann.AnnouncementId;
                     specification.BodyType = data.Specification.BodyType;
+                    specification.BodyTypeSelected = GetBodyType(specification.BodyType);
                     specification.Color = data.Specification.Color;
                     specification.Emissions = data.Specification.Emissions;
                     specification.EngineSize = data.Specification.EngineSize;
                     specification.GearBox = data.Specification.GearBox;
                     specification.GetFuelType = data.Specification.GetFuelType;
+                    specification.FuelTypeSelected = GetFuelType(specification.GetFuelType);
                     specification.HadAccident = data.Specification.HadAccident;
                     specification.HasABS = data.Specification.HasABS;
                     specification.HasCruiseControl = data.Specification.HasCruiseControl;
@@ -241,6 +255,61 @@ namespace Racooter.DataAccess.Repositories
                 Id = x.Id,
                 Name = x.Name
             }).ToListAsync();
+        }
+
+        public ApplicationUser GetSeller(string sellerId)
+        {
+            return _context.Users.Where(x => x.Id == sellerId).FirstOrDefault();
+        }
+
+        public string GetBodyType(int bodyTypeInt)
+        {
+            string result = "";
+            switch (bodyTypeInt)
+            {
+                case 1:
+                    result = "Cabrio";
+                    break;
+                case 2:
+                    result = "Sedan";
+                    break;
+                case 3:
+                    result = "Coupe";
+                    break;
+                case 4:
+                    result = "Hatchback";
+                    break;
+                case 5:
+                    result = "SUV";
+                    break;
+
+            }
+            return result;
+        }
+
+        public string GetFuelType(int? fuelTypeInt)
+        {
+            string result = "";
+            switch (fuelTypeInt)
+            {
+                case 1:
+                    result = "Diesel";
+                    break;
+                case 2:
+                    result = "GPL";
+                    break;
+                case 3:
+                    result = "Petrol";
+                    break;
+                case 4:
+                    result = "Electric";
+                    break;
+                case 5:
+                    result = "Hybrid";
+                    break;
+
+            }
+            return result;
         }
 
         public async Task Approve(Guid guid)
@@ -387,7 +456,11 @@ namespace Racooter.DataAccess.Repositories
                 Price = x.Announcement.Price,
                 Title = x.Announcement.Title,
                 Views = x.Announcement.Views,
-                CreatedBy = x.Announcement.CreatedBy
+                CreatedBy = x.Announcement.SellerInfo.Id,
+                UserName = x.Announcement.SellerInfo.FullName,
+                UserEmail = x.Announcement.SellerInfo.Email,
+                PhoneNumber = x.Announcement.PhoneNumber,
+                Location = x.Announcement.Location
             }).ToListAsync();
 
 

@@ -42,7 +42,11 @@ namespace RacooterCarTradingApp.Controllers
                 Title = x.Title,
                 Views = x.Views,
                 IsApprovedByAdmin = x.IsApprovedByAdmin,
-                CreatedBy = x.CreatedBy
+                CreatedBy = x.SellerInfo.Id,
+                UserName = x.SellerInfo.FullName,
+                UserEmail = x.SellerInfo.Email,
+                Location = x.Location,
+                PhoneNumber = x.PhoneNumber
             }).ToList();
 
             var currentUserEmail = User.Identity.Name;
