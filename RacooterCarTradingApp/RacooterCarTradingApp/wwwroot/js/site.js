@@ -32,19 +32,8 @@
         if (obj.Location == undefined || obj.Location == "") {
             toastr.error('Location is required!');
             return false;
-        }
-        if (obj.PhoneNumber == undefined || obj.PhoneNumber == "") {
-            toastr.error('Phone number is required!');
-            return false;
-        }
-
-        var regExp = /^\d+$/;
-        if (obj.PhoneNumber.length != 10 || !regExp.test(obj.PhoneNumber) || !obj.PhoneNumber.startsWith("0")) {
-            toastr.error('Phone number is invalid!');
-            return false;
-        }
-        //toastr.success('Beautiful Message');
-
+        }        
+        
         obj.Specification = {
             AnnouncementId: $('#HiddenAnnouncementId').val(),
             Make: $('#Make').val(),

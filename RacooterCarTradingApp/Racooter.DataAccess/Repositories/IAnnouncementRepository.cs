@@ -146,7 +146,7 @@ namespace Racooter.DataAccess.Repositories
                     announcement.Description = data.Description;
                     announcement.Title = data.Title;
                     announcement.Price = data.Price;
-                    announcement.PhoneNumber = data.PhoneNumber;
+                    announcement.PhoneNumber = GetUserPhoneNumberById(CurrentUserId);
                     announcement.Location = data.Location;
                 }
                 if (data.Specification != null)
@@ -202,7 +202,7 @@ namespace Racooter.DataAccess.Repositories
                 ann.IsApprovedByAdmin = false;                                
                 ann.SellerInfo = GetSeller(CurrentUserId);
                 ann.Location = data.Location;
-                ann.PhoneNumber = data.PhoneNumber;
+                ann.PhoneNumber = GetUserPhoneNumberById(CurrentUserId);
 
                 Add(ann);
                 await _context.SaveChangesAsync();
@@ -762,6 +762,11 @@ namespace Racooter.DataAccess.Repositories
         public async Task<string> GetUserIdByUserName(string userName)
         {
             return await _context.Users.Where(x => x.UserName == userName).Select(r => r.Id).FirstOrDefaultAsync();
+        }
+
+        public string GetUserPhoneNumberById(string CurrentUserId)
+        {
+            return _context.Users.Where(x => x.Id == CurrentUserId).Select(r => r.PhoneNumber).FirstOrDefault();
         }
 
 
