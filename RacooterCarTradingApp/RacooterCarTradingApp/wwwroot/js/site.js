@@ -70,6 +70,7 @@
             HasHeatedSeats: $('#HasHeatedSeats').is(':checked'),
             HasElectricMirrors: $('#HasElectricMirrors').is(':checked'),
             HasHeatedStWheel: $('#HasHeatedStWheel').is(':checked'),
+            HasVentedSeats: $('#HasVentedSeats').is(':checked'),
             HadAccident: $('#HadAccident').is(':checked')
         }
 

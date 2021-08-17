@@ -82,7 +82,15 @@
                 </label>
 
                 <label class="col-md-3">
-                    <strong>@Model.Price $</strong>
+                    <strong>@Model.Price $</strong><br />
+                    @if (Model.Specification.IsNegotiable)
+                    {
+                        <strong style="color: forestgreen"> Negotiable</strong>
+                    }
+                    else
+                    {
+                        <strong style="color: red"> Fixed</strong>
+                    }
                 </label>
 
                 <label class="col-md-3">
@@ -91,7 +99,7 @@
                 <label class="col-md-3">
                     <strong>@Model.CategoryString</strong>
                 </label>
-            </div>
+            </div>            
 
             <div class="row">
                 <label class="col-md-3">

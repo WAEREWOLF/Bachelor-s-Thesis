@@ -68,7 +68,7 @@
                     <div class="form-group row">
                         <label class="col-md-12">Location</label>
                         <div class="col-md-12">
-                            <input type="text" id="Location" name="Location" value="@Model.Location" class="form-control" />
+                            <input type="text" id="Location" name="Location" placeholder="ex: Craiova, Dolj" value="@Model.Location" class="form-control" />
                         </div>
                     </div>
                 </div>
@@ -244,13 +244,13 @@
                             <select class="form-control" id="IsFullOptions" name="Specification.IsFullOptions">
                                 @if (Model.Specification.IsFullOptions == true)
                                 {
-                                    <option value="1" selected>Yes</option>
-                                    <option value="0">No</option>
+                                    <option value="true" selected>Yes</option>
+                                    <option value="false">No</option>
                                 }
                                 else
                                 {
-                                    <option value="1">Yes</option>
-                                    <option value="0" selected>No</option>
+                                    <option value="true">Yes</option>
+                                    <option value="false" selected>No</option>
                                 }
                             </select>
                         </div>
@@ -259,18 +259,25 @@
 
                 <div class="col-md-6">
                     <div class="form-group row">
-                        <label class="col-md-12">Is Negotiable</label>
+                        @if (Model.Specification.IsNegotiable)
+                        {
+                            <label class="col-md-12" style="color: forestgreen"><strong>Is Negotiable</strong></label>
+                        }
+                        else
+                        {
+                            <label class="col-md-12" style="color: red"><strong>Is Negotiable</strong></label>
+                        }
                         <div class="col-md-12">
                             <select class="form-control" id="IsNegotiable" name="Specification.IsNegotiable">
                                 @if (Model.Specification.IsNegotiable == true)
                                 {
-                                    <option value="1" selected>Yes</option>
-                                    <option value="0">No</option>
+                                    <option value="true" selected>Yes</option>
+                                    <option value="false">No</option>
                                 }
                                 else
                                 {
-                                    <option value="1">Yes</option>
-                                    <option value="0" selected>No</option>
+                                    <option value="true">Yes</option>
+                                    <option value="false" selected>No</option>
                                 }
                             </select>
                         </div>
@@ -328,7 +335,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
 
             <div class="row">

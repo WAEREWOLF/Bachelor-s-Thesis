@@ -155,13 +155,13 @@ namespace Racooter.DataAccess.Repositories
                     if (specification != null)
                     {
                         specification.BodyType = data.Specification.BodyType;
-                        specification.BodyTypeSelected = data.Specification.BodyTypeSelected;
+                        specification.BodyTypeSelected = GetBodyType(specification.BodyType);
                         specification.Color = data.Specification.Color;
                         specification.Emissions = data.Specification.Emissions;
                         specification.EngineSize = data.Specification.EngineSize;
                         specification.GearBox = data.Specification.GearBox;
                         specification.GetFuelType = data.Specification.GetFuelType;
-                        specification.FuelTypeSelected = data.Specification.FuelTypeSelected;
+                        specification.FuelTypeSelected = GetFuelType(specification.GetFuelType);
                         specification.HadAccident = data.Specification.HadAccident;
                         specification.HasABS = data.Specification.HasABS;
                         specification.HasCruiseControl = data.Specification.HasCruiseControl;
@@ -181,8 +181,8 @@ namespace Racooter.DataAccess.Repositories
                         specification.Model = data.Specification.Model;
                         specification.NrOfDoors = data.Specification.NrOfDoors;
                         specification.Power = data.Specification.Power;
-                        specification.Year = data.Specification.Year;
-                        _context.Entry(specification).State = EntityState.Modified;
+                        specification.Year = data.Specification.Year;                        
+                        await _context.SaveChangesAsync();
                     }
                 }
                 return announcement.AnnouncementId;
