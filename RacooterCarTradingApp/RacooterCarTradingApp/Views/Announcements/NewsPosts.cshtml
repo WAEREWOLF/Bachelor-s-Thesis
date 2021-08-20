@@ -5,7 +5,14 @@
         border: 1px solid #e5d6d6;
         margin-top: 10px;
         margin-bottom: 10px;
-        padding:10px;
+        padding: 10px;
+        transform: perspective(2000px) translate3d(0px, -66px, 198px) rotateX(42deg) scale3d(0.86, 0.75, 1) translateY(50px);
+        border-radius: 5px;
+        will-change: transform;
+        transition: 0.4s ease-in-out transform;        
+    }
+    .row.each-post:hover {
+            transform: scale3d(1, 1, 1);
     }
 </style>
 <div style="text-align:center; padding-top: 2%">    
@@ -50,7 +57,7 @@
 
         @foreach (var item in Model)
         {
-            <div class="row each-post" style="border-color: black">
+            <div class="row each-post" style="border-color: #0275d8">
                 <div class="col-md-11">
                     <h3>
                         <strong>@item.Title</strong>

@@ -46,7 +46,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group row">
-                        <label class="col-md-12">Price</label>
+                        <label class="col-md-12">Price (EUR)</label>
                         <div class="col-md-12">
                             <input type="number" class="form-control" value="@Model.Price" id="Price" name="Price" />
                         </div>
@@ -155,7 +155,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group row">
-                        <label class="col-md-12">Power</label>
+                        <label class="col-md-12">Power (HP)</label>
                         <div class="col-md-12">
                             <input type="number" class="form-control" value="@Model.Specification.Power" id="Power" name="Specification.Power" />
                         </div>
@@ -581,22 +581,23 @@
                 {
                     if (Model.CreatedBy == ViewBag.CurrentUserId || Model.AnnouncementId == Guid.Empty || Model.AnnouncementId == null)
                     {
-                        <button type="button" class="btn btn-outline-primary" style="margin-right:5px;" onclick="App.SaveAnnouncement()">Save</button>
-                        <button type="button" class="btn btn-outline-success" onclick="App.MakeImageUploader()">Add Image</button>
+                        <button type="button" class="btn btn-outline-success" style="margin-right:5px; display: block; margin-left: auto; margin-right: auto;" onclick="App.MakeImageUploader()">Add Image</button>
+                        <button type="button" class="btn btn-outline-primary" style="margin-right:5px; display: block; margin-left: auto; margin-right: auto;" onclick="App.SaveAnnouncement()">Save</button>
+                        <input type="button" class="btn btn-outline-warning" style="margin-right:5px; display: block; margin-left: auto; margin-right: auto;" onclick="location.href='@Url.Action("Index", "Announcements")'" value="Cancel">
                     }
                     else
                     {
                         <a class="btn btn-outline-primary" href="/Announcements/Messages?id=@Model.CreatedBy">Buy</a>
-                        <a class="btn btn-outline-success" href="/Announcements/Index">Cancel</a>
+                        <a class="btn btn-outline-warning" href="/Announcements/Index">Cancel</a>
                     }
                 }
                 else //Admin or moderator
                 {
                     if (Model.IsApprovedByAdmin == false)
                     {
-                        <button type="button" class="btn btn-outline-primary" style="margin-right:5px;" onclick="App.ApproveAnnouncement('@Model.AnnouncementId')">Approve</button>
+                        <button type="button" class="btn btn-outline-primary" style="margin-right:5px; display: block; margin-left: auto; margin-right: auto;" onclick="App.ApproveAnnouncement('@Model.AnnouncementId')">Approve</button>
                     }
-                    <a class="btn btn-outline-success" href="/Announcements/Index">Cancel</a>
+                    <a class="btn btn-outline-warning" style="margin-right:5px; display: block; margin-left: auto; margin-right: auto;" href="/Announcements/Index">Cancel</a>
                 }
             </div>
 
