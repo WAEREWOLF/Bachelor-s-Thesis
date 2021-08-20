@@ -39,7 +39,7 @@ namespace Racooter.DataAccess.Repositories
                     msg.CreatedBy = CurrentUserId;
                     msg.CreatedDate = DateTime.Now;
                     msg.IsRead = true;
-                    msg.MessageText = "";
+                    msg.MessageText = "I want to start a conversation...";
                     msg.Recipient = id;
                     _context.Messages.Add(msg);
                     await _context.SaveChangesAsync();
