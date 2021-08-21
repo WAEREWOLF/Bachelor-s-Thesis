@@ -59,18 +59,21 @@
         {
             <div class="row each-post" style="border-color: #0275d8">
                 <div class="col-md-11">
-                    <h3>
+                    <h3 style="text-align-last: center">
                         <strong>@item.Title</strong>
-                    </h3>
+                    </h3><br />
                     <h5>
                         @item.SubTitle
                     </h5>
                     <p>
                         @item.Content
                     </p>
+                    <p style="text-align-last: right">
+                        @item.CreatedDate
+                    </p>
                 </div>
                 <div class="col-md-1">
-                    @if (User.IsInRole("Admin"))
+                    @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
                     {
                         <a href="/Announcements/DeleteNewsPost?id=@item.Id">
                             <i class="fa fa-trash"></i>

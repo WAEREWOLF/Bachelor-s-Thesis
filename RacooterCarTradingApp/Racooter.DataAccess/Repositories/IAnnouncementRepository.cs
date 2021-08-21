@@ -389,6 +389,7 @@ namespace Racooter.DataAccess.Repositories
             if (AnyFieldHaveValue)
             {
                 fltr.CreatedBy = CurrentUserId;
+                fltr.CreatedDate = DateTime.Now;
                 _context.SearchFilters.Add(fltr);
                 await _context.SaveChangesAsync();
             }
@@ -891,7 +892,7 @@ namespace Racooter.DataAccess.Repositories
 
         public async Task<List<NewsPost>> GetNewsPostsAsync()
         {
-            return await _context.NewsPosts.ToListAsync();
+            return await _context.NewsPosts.OrderByDescending(x => x.CreatedDate).ToListAsync();
         }
 
         public async Task<bool> IsAllowForAnnouncementCreation(string CurrentUserEmail)

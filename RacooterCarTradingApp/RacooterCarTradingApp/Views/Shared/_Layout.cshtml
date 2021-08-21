@@ -34,7 +34,7 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item dropdown">
-                            <a class="btn btn-info" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="btn btn-info" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border-radius: 50%">
                                 Menu
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -49,7 +49,11 @@
                                     }
                                     <a class="dropdown-item" href="/Announcements/Messages">Inbox</a>
                                     <a class="dropdown-item" href="/Announcements/NewsPosts">News Posts</a>
-                                    <a class="dropdown-item" href="/Announcements/Messages?id=29ba81b7-f5fa-4086-a9b7-3abc7dbf8796">Contact admin</a>
+                                    @if (!User.IsInRole("Admin"))
+                                    {
+                                     <div class="dropdown-divider"></div>
+                                     <a class="dropdown-item" href="/Announcements/Messages?id=eb75f473-5e92-4620-a752-39a0df117bb4">Contact admin</a>
+                                    }
 
                                     @if (User.IsInRole("Admin"))
                                     {
@@ -60,54 +64,54 @@
                             </div>
                         </li>
                         <li class="nav-item" style="padding-left: 3%">
-                            <a class="btn btn-info" asp-area="" asp-controller="Announcements" asp-action="Home">Home</a>
+                            <a class="btn btn-info" asp-area="" asp-controller="Announcements" asp-action="Home" style="border-radius: 20%">Home</a>
                         </li>
                         @if (User.IsInRole("Buyer") || User.IsInRole("Seller"))
                         {
-                            <li class="nav-item" style="padding-left: 20%">
+                            <li class="nav-item" style="padding-left: 20%;">
                                 <a asp-action="Messages" asp-controller="Announcements">
-                                    <input type="button" class="btn btn-outline-danger" value="Inbox" />
+                                    <input type="button" class="btn btn-outline-danger" style="border-radius: 20%" value="Inbox" />
                                 </a>
                             </li>
-                            <li class="nav-item" style="padding-left: 5%">
+                            <li class="nav-item" style="padding-left: 5%;">
                                 <a asp-action="AddUpdate" asp-controller="Announcements">
-                                    <input type="button" class="btn btn-outline-danger" value="New Announcement" />
+                                    <input type="button" class="btn btn-outline-danger" style="border-radius: 15%" value="New Announcement" />
                                 </a>
                             </li>
                         }
                         @if (User.IsInRole("Admin"))
                         {
-                            <li class="nav-item" style="padding-left: 5%">
+                            <li class="nav-item" style="padding-left: 5%;">
                                 <a asp-action="NewsPosts" asp-controller="Announcements">
-                                    <input type="button" class="btn btn-outline-danger" value="Post News" />
+                                    <input type="button" class="btn btn-outline-danger" style="border-radius: 20%" value="Post News" />
                                 </a>
                             </li>
-                            <li class="nav-item" style="padding-left: 2%">
+                            <li class="nav-item" style="padding-left: 2%;">
                                 <a asp-action="Index" asp-controller="Users">
-                                    <input type="button" class="btn btn-outline-danger" value="Users" />
+                                    <input type="button" class="btn btn-outline-danger" style="border-radius: 20%" value="Users" />
                                 </a>
                             </li>
-                            <li class="nav-item" style="padding-left: 2%">
+                            <li class="nav-item" style="padding-left: 2%;">
                                 <a asp-action="Categories" asp-controller="Announcements">
-                                    <input type="button" class="btn btn-outline-danger" value="Add Category" />
+                                    <input type="button" class="btn btn-outline-danger" style="border-radius: 20%" value="Add Category" />
                                 </a>
                             </li>
-                            <li class="nav-item" style="padding-left: 2%">
+                            <li class="nav-item" style="padding-left: 2%;">
                                 <a asp-action="Index" asp-controller="Announcements">
-                                    <input type="button" class="btn btn-outline-danger" value="Review Announcements" />
+                                    <input type="button" class="btn btn-outline-danger" style="border-radius: 15%" value="Review Announcements" />
                                 </a>
                             </li>
                         }
                         @if (User.IsInRole("Moderator"))
                         {
-                            <li class="nav-item" style="padding-left: 20%">
+                            <li class="nav-item" style="padding-left: 20%;">
                                 <a asp-action="NewsPosts" asp-controller="Announcements">
-                                    <input type="button" class="btn btn-outline-danger" value="Post News" />
+                                    <input type="button" class="btn btn-outline-danger" style="border-radius: 20%" value="Post News" />
                                 </a>
                             </li>
-                            <li class="nav-item" style="padding-left: 5%">
+                            <li class="nav-item" style="padding-left: 5%;">
                                 <a asp-action="Index" asp-controller="Announcements">
-                                    <input type="button" class="btn btn-outline-danger" value="Review Announcements" />
+                                    <input type="button" class="btn btn-outline-danger" style="border-radius: 20%" value="Review Announcements" />
                                 </a>
                             </li>
                         }

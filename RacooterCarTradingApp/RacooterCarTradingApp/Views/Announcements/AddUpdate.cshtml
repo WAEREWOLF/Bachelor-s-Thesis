@@ -581,9 +581,9 @@
                 {
                     if (Model.CreatedBy == ViewBag.CurrentUserId || Model.AnnouncementId == Guid.Empty || Model.AnnouncementId == null)
                     {
-                        <button type="button" class="btn btn-outline-success" style="margin-right:5px; display: block; margin-left: auto; margin-right: auto;" onclick="App.MakeImageUploader()">Add Image</button>
-                        <button type="button" class="btn btn-outline-primary" style="margin-right:5px; display: block; margin-left: auto; margin-right: auto;" onclick="App.SaveAnnouncement()">Save</button>
-                        <input type="button" class="btn btn-outline-warning" style="margin-right:5px; display: block; margin-left: auto; margin-right: auto;" onclick="location.href='@Url.Action("Index", "Announcements")'" value="Cancel">
+                        <button type="button" class="btn btn-outline-success" style="margin-right:5px; display: block; margin-left: auto; margin-right: auto; border-radius: 20%" onclick="App.MakeImageUploader()">Add Image</button>
+                        <button type="button" class="btn btn-outline-primary" style="margin-right:5px; display: block; margin-left: auto; margin-right: auto; border-radius: 20%" onclick="App.SaveAnnouncement()">Save</button>
+                        <input type="button" class="btn btn-outline-warning" style="margin-right:5px; display: block; margin-left: auto; margin-right: auto; border-radius: 20%" onclick="location.href='@Url.Action("Index", "Announcements")'" value="Cancel">
                     }
                     else
                     {
@@ -595,9 +595,9 @@
                 {
                     if (Model.IsApprovedByAdmin == false)
                     {
-                        <button type="button" class="btn btn-outline-primary" style="margin-right:5px; display: block; margin-left: auto; margin-right: auto;" onclick="App.ApproveAnnouncement('@Model.AnnouncementId')">Approve</button>
+                        <button type="button" class="btn btn-outline-primary" style="margin-right:5px; display: block; margin-left: auto; margin-right: auto; border-radius: 20%" onclick="App.ApproveAnnouncement('@Model.AnnouncementId')">Approve</button>
                     }
-                    <a class="btn btn-outline-warning" style="margin-right:5px; display: block; margin-left: auto; margin-right: auto;" href="/Announcements/Index">Cancel</a>
+                    <a class="btn btn-outline-warning" style="margin-right:5px; display: block; margin-left: auto; margin-right: auto; border-radius: 20%" href="/Announcements/Index">Cancel</a>
                 }
             </div>
 
