@@ -1,40 +1,67 @@
-﻿
+﻿<script>
+    function reloadMessages() {
+        var userId = $('#selectedUserId').val();
+        App.LoadUserMessages(userId);      
+    }
+</script>
 <link href="~/css/Message.css" rel="stylesheet" />
 <input type="hidden" value="@ViewBag.ReceipentId" id="hiddenReceipentId" />
+<input type="hidden" value="" id="selectedUserId"/>
 <img src="~/pictures/inbox.jpg" style="height: 170px; display: block; margin-left: auto;margin-right: auto;" /><br />
-<div class="messaging" style="height:350px !important;">
-    <div class="inbox_msg">
-        <div class="inbox_people">
-            <div class="inbox_chat">
-                @if (ViewBag.MessageUsers != null)
-                {
-                    foreach (var item in ViewBag.MessageUsers as List<KeyValuePair<string, string>>)
-                    {
-    <div class="chat_list">
-        <div class="chat_people" data-id="@item.Key" onclick="App.LoadUserMessages('@item.Key')">
-            <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-            <div class="chat_ib">
-                <h5>@item.Value <span class="chat_date"></span></h5>
-                <p>
-                    Click to see messages.
-                </p>
+<div class="row">
+    <div class="col-12">
+        <div class="messaging" style="height:350px !important;">
+            <div class="inbox_msg">
+                <div class="inbox_people">
+                    <div class="inbox_chat">
+                        @if (ViewBag.MessageUsers != null)
+                        {
+                            foreach (var item in ViewBag.MessageUsers as List<KeyValuePair<string, string>>)
+                            {
+                                <div class="chat_list">
+                                    <div class="chat_people" data-id="@item.Key" onclick="App.LoadUserMessages('@item.Key')">
+                                        <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                                        <div class="chat_ib">
+                                            <h5>@item.Value <span class="chat_date"></span></h5>
+                                            <p>
+                                                Click to see messages.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>}
+                        }
+                    </div>
+                </div>
+                <div class="mesgs" id="UserMessagesContainer" style="background: #F8F8FF; border-color: black">
+
+                </div>
             </div>
-        </div>
-    </div>      }
-}
-            </div>
-        </div>
-        <div class="mesgs" id="UserMessagesContainer" style="background: #F8F8FF; border-color: black">
 
         </div>
     </div>
-
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="type_msg">
+            <div class="input_msg_write">
+                <input type="text" id="txtBoxMessage" class="write_msg" placeholder="Type a message" />
+                <button class="msg_send_btn" id="btnSaveMessage" onclick="App.SaveMessage()" type="button"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+            </div>
+        </div>
+    </div>
 </div>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script>
     $(document).ready(function () {
         if ($('.chat_list').length > 0) {
             $('.chat_list:first').find('.chat_people').trigger('click');
+            setInterval(reloadMessages, 2000);
+
+            $("#txtBoxMessage").keyup(function (event) {
+                if (event.keyCode === 13) {
+                    $("#btnSaveMessage").click();
+                }
+            });
         }
     });
 </script>

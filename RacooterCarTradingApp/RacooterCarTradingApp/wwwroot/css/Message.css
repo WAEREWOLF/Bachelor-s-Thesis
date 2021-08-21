@@ -9,16 +9,14 @@ img {
 
 .inbox_people {
     background: #f8f8f8 none repeat scroll 0 0;
-    float: left;
-    overflow: hidden;
+    float: left;    
     width: 40%;
     border-right: 1px solid #c4c4c4;
 }
 
 .inbox_msg {
     border: 1px solid #c4c4c4;
-    clear: both;
-    overflow: hidden;
+    clear: both;    
 }
 
 .top_spac {
@@ -177,17 +175,17 @@ img {
 }
 
 .input_msg_write input {
-    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
-    border: medium none;
-    color: #4c4c4c;
+    background: rgb(210 222 224 / 60%) none repeat scroll 0 0;
+    border: 1px solid #05728f;
+    color: black;
     font-size: 15px;
     min-height: 48px;
-    width: 100%;
+    width: 60%;
+    margin-left: 40%;
 }
 
 .type_msg {
-    border-top: 1px solid #c4c4c4;
-    position: relative;
+    border-top: 1px solid #c4c4c4;   
 }
 
 .msg_send_btn {
@@ -199,7 +197,7 @@ img {
     font-size: 17px;
     height: 33px;
     position: absolute;
-    right: 0;
+    right: 20px;
     top: 11px;
     width: 33px;
 }

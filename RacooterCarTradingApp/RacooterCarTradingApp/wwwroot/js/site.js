@@ -210,11 +210,10 @@
     }
 
     let handleLoadUserMessages = (userId) => {
-
         
         $('.chat_list').removeClass('active_chat');
         $('div[data-id="' + userId + '"]').parents('.chat_list').addClass('active_chat');
-
+        $('#selectedUserId').val(userId);
         $.ajax({
             type: "GET",
             url: "/Announcements/UserMessages",
@@ -227,15 +226,14 @@
         })
     }
 
-    let handleSaveMessage = () => {
-
-        
+    let handleSaveMessage = () => {        
 
         let msgTxt = $('#txtBoxMessage').val();
         if (msgTxt == "" || msgTxt.trim() == "" || msgTxt == undefined) {
             toastr.error("Please write a message first!");
             return false;
         }
+        
         let receiverId = $('.active_chat').find('.chat_people').attr("data-id");
 
         $.ajax({
@@ -246,7 +244,8 @@
                 receiverId: receiverId
             },
             success: function (response) {
-                App.LoadUserMessages(receiverId);
+                $('#txtBoxMessage').val("");
+                App.LoadUserMessages(receiverId);                
             }
         })
     }
