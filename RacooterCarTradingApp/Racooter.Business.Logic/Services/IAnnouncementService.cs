@@ -52,12 +52,12 @@ namespace Racooter.Business.Logic.Services
 
         public void AddUpdate(Guid? Id)
         {
-            _unitOfWork.Announcements.AddUpdate(Id);
+            _unitOfWork.Announcements.GetAnnouncement(Id);
         }
 
         public async Task<AnnouncementDto> GetAnnouncement(Guid? Id, string CurrentUserId)
         {
-            var announcement = await _announcementRepository.AddUpdate(Id);
+            var announcement = await _announcementRepository.GetAnnouncement(Id);
             if (announcement.CreatedBy != CurrentUserId)
             {
                 await _announcementRepository.AddAnnouncementView(Id);

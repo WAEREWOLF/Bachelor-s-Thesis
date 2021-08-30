@@ -15,7 +15,7 @@ namespace Racooter.DataAccess.Repositories
 {
     public interface IAnnouncementRepository : IRepository<Announcement>
     {
-        public Task<AnnouncementDto> AddUpdate(Guid? Id);
+        public Task<AnnouncementDto> GetAnnouncement(Guid? Id);
         public Task<Guid> SaveAnnouncement(AnnouncementDto data, string CurrentUserId);        
         Task<List<CategoryDto>> GetCategoriesAsync();
         Task SaveCategoryAsync(int id, string name);
@@ -49,7 +49,7 @@ namespace Racooter.DataAccess.Repositories
             _context = context;
         }
         #region Announcements Management
-        public async Task<AnnouncementDto> AddUpdate(Guid? Id)
+        public async Task<AnnouncementDto> GetAnnouncement(Guid? Id)
         {
             var model = new AnnouncementDto();
             

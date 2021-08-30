@@ -197,8 +197,7 @@ namespace RacooterCarTradingApp.Controllers
 
         public async Task<string> GetCurrentUserId()
         {
-            var name = User.Identity.Name;
-            //return await _unitOfWork.Users.GetAll().Where(x => x.UserName == name).Select(r => r.Id).FirstOrDefaultAsync();
+            var name = User.Identity.Name;            
             return await _announcementService.GetUserIdByUserName(name);
         }
 
