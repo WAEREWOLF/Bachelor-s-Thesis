@@ -856,14 +856,17 @@ namespace Racooter.DataAccess.Repositories
         public async Task DeleteUser(string id)
         {
             var user = await _context.Users.FindAsync(id);
-            var userRole = await (from usr in _context.Users
-                                  join ur in _context.UserRoles on usr.Id equals ur.UserId
-                                  join r in _context.Roles on ur.RoleId equals r.Id
-                                  select r).FirstOrDefaultAsync();
-            if (userRole.Name != "Admin")
+            
+            var userAnnouncementsId = _context.Announcements.Where(a => a.SellerInfo.Id == user.Id).Select(x => x.AnnouncementId).ToList();
+            if (userAnnouncementsId != null)
             {
-                _context.Users.Remove(user);
-            }
+                foreach(var item in userAnnouncementsId)
+                {
+                    await DeleteAnnouncement(item);
+                }
+            }   
+            _context.Users.Remove(user);
+            
         }
 
         #endregion
