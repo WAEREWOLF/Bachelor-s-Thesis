@@ -707,7 +707,7 @@ namespace Racooter.DataAccess.Repositories
                 data = new List<AnnouncementDto>();
                 data.AddRange(newFilteredList);
 
-                data = data.OrderByDescending(x => x.FilterColumn).ToList();
+                data = data.OrderBy(x => x.FilterColumn).Distinct().ToList();
             }
 
 
